@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.Collections;
 
-public class DictionaryManagement extends Dictionary{
+public class DictionaryManagement extends Dictionary {
 
     public static void insertFromCommandline() {
         Scanner s = new Scanner(System.in);
@@ -18,14 +18,14 @@ public class DictionaryManagement extends Dictionary{
 
     public static void insertFromFile() {
 
-        try{
+        try {
             Scanner s = new Scanner(new File("./src/dictionaries.txt"));
             String line = s.nextLine();
             BufferedReader r = new BufferedReader(new FileReader("./src/dictionaries.txt"));
 
             while ((line = r.readLine()) != null) {
                 String[] parts = line.split("\t", 2);
-                if(parts.length >= 2){
+                if (parts.length >= 2) {
                     Word newWord = new Word(parts[0].trim(), parts[1].trim());
                     words.add(newWord);
                 }
@@ -37,14 +37,14 @@ public class DictionaryManagement extends Dictionary{
         }
     }
 
-    public static void dictionaryLookup(){
+    public static void dictionaryLookup() {
         Scanner s = new Scanner(System.in);
         System.out.println("Enter the word you want to look up: ");
         String lookUpWord = s.nextLine();
 
         //NEED TO UPDATE THIS PART BY USING BINARY SEARCH 
-        for(Word w: words){
-            if(w.getWordTarget().equals(lookUpWord)){
+        for (Word w : words) {
+            if (w.getWordTarget().equals(lookUpWord)) {
                 System.out.println(w.getWordExplain());
                 return;
             }
@@ -55,7 +55,7 @@ public class DictionaryManagement extends Dictionary{
 
     }
 
-    public static void addWord(){
+    public static void addWord() {
 
         Scanner s = new Scanner(System.in);
 
@@ -73,10 +73,10 @@ public class DictionaryManagement extends Dictionary{
         //
 
         System.out.println("Word added!");
-        
+
     }
 
-    public static void updateWord(){
+    public static void updateWord() {
 
         Scanner s = new Scanner(System.in);
 
@@ -84,8 +84,8 @@ public class DictionaryManagement extends Dictionary{
         String updateWordTarget = s.nextLine();
 
         //NEED TO UPDATE THIS PART USING BINARY SEARCH
-        for(Word w: words){
-            if(w.getWordTarget().equals(updateWordTarget)){
+        for (Word w : words) {
+            if (w.getWordTarget().equals(updateWordTarget)) {
 
                 System.out.println("Enter the update explanation: ");
                 String updateWordExplain = s.nextLine();
@@ -101,7 +101,7 @@ public class DictionaryManagement extends Dictionary{
 
     }
 
-    public static void deleteWord(){
+    public static void deleteWord() {
 
         Scanner s = new Scanner(System.in);
 
@@ -109,8 +109,8 @@ public class DictionaryManagement extends Dictionary{
         String deleteWordTarget = s.nextLine();
 
         //NEED TO UPDATE THIS PART USING BINARY SEARCH
-        for(Word w: words){
-            if(w.getWordTarget().equals(deleteWordTarget)){
+        for (Word w : words) {
+            if (w.getWordTarget().equals(deleteWordTarget)) {
 
                 words.remove(w);
                 System.out.println("Word deleted!");
@@ -130,7 +130,7 @@ public class DictionaryManagement extends Dictionary{
 
         try {
             FileOutputStream output = new FileOutputStream(f);
-            for(Word w: words){
+            for (Word w : words) {
                 String tmp = w.getWordTarget() + "\t" + w.getWordExplain() + "\n";
                 output.write(tmp.getBytes());
             }
