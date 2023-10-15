@@ -1,20 +1,20 @@
 import java.util.Scanner;
 
-public class DictionaryCommandline extends Dictionary {
+public class DictionaryCommandline extends Dictionary{
 
-    public static void showAllWords() {
+    public static void showAllWords(){
         System.out.println("No\t| English\t| Vietnamese");
-        for (int i = 0; i < words.size(); i++) {
+        for(int i = 0; i < words.size(); i++){
             System.out.println(i + "\t| " + words.get(i).getWordTarget() + "\t| " + words.get(i).getWordExplain());
         }
     }
 
-    public static void dictionaryBasic() {
+    public static void dictionaryBasic(){
         DictionaryManagement.insertFromCommandline();
         showAllWords();
     }
 
-    public static void dictionarySearcher() {
+    public static void dictionarySearcher(){
 
         Scanner s = new Scanner(System.in);
 
@@ -23,34 +23,34 @@ public class DictionaryCommandline extends Dictionary {
 
         boolean isFound = false;//Check if can search
 
-        for (Word w : words) {
+        for(Word w: words){
             String target = w.getWordTarget();
 
             /* Condition: 
             - Length of search word is not greater than length of target word.
             - Search word is found at the beginning of the target word.
             */
-            if (search.length() <= target.length()
-                    && target.substring(0, search.length()).equals(target)) {
+            if(search.length() <= target.length() 
+                && target.substring(0, search.length()).equals(target)){
                 System.out.println(target);
                 isFound = true;
             } else {
                 //Iteration stop condition
-                if (isFound) {
+                if(isFound) {
                     return;
                 }
 
             }
         }
 
-        if (!isFound) {
+        if(!isFound){
             System.out.println("No word found!");
         }
 
     }
 
     //UPDATE DICTIONARY GAME
-    public static void dictionaryGame() {
+    public static void dictionaryGame(){
 
     }
 
@@ -70,11 +70,11 @@ public class DictionaryCommandline extends Dictionary {
         System.out.print("Your action: ");
     }
 
-    public static void dictionaryFunction() {
+    public static void dictionaryFunction(){
         dictionaryMenu();
         Scanner s = new Scanner(System.in);
         int choice = s.nextInt();
-        switch (choice) {
+        switch(choice) {
             case 0:
                 System.exit(0);
                 break;
@@ -114,7 +114,7 @@ public class DictionaryCommandline extends Dictionary {
         Scanner s = new Scanner(System.in);
         System.out.print("Do you want to continue? (Y/N): ");
         String action = s.nextLine();
-        if (action.toUpperCase().equalsIgnoreCase("N")) {
+        if(action.toUpperCase().equalsIgnoreCase("N")){
             System.exit(0);
         }
     }
@@ -122,7 +122,7 @@ public class DictionaryCommandline extends Dictionary {
     public static void dictionaryAdvanced() {
         DictionaryManagement.insertFromFile();
         dictionaryFunction();
-        while (true) {
+        while(true){
             dictionaryContinue();
             dictionaryFunction();
         }
