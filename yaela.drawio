@@ -4,7 +4,7 @@
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
-        <mxCell id="tXaUiWjBVSACxav1ar_c-1" value="Word" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+        <mxCell id="tXaUiWjBVSACxav1ar_c-1" value="CommandVersion.Word" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-1375" y="-842" width="215" height="170" as="geometry" />
         </mxCell>
         <mxCell id="tXaUiWjBVSACxav1ar_c-2" value="- word_target: String&lt;br&gt;- word_explain: String&lt;br&gt;- word-pronunciation: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="tXaUiWjBVSACxav1ar_c-1" vertex="1">
@@ -13,19 +13,19 @@
         <mxCell id="tXaUiWjBVSACxav1ar_c-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="tXaUiWjBVSACxav1ar_c-1" vertex="1">
           <mxGeometry y="110" width="215" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="tXaUiWjBVSACxav1ar_c-4" value="+ Word(String word_target, String word_explain)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="tXaUiWjBVSACxav1ar_c-1" vertex="1">
+        <mxCell id="tXaUiWjBVSACxav1ar_c-4" value="+ CommandVersion.Word(String word_target, String word_explain)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="tXaUiWjBVSACxav1ar_c-1" vertex="1">
           <mxGeometry y="118" width="215" height="52" as="geometry" />
         </mxCell>
-        <mxCell id="tXaUiWjBVSACxav1ar_c-5" value="Dictionary" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+        <mxCell id="tXaUiWjBVSACxav1ar_c-5" value="CommandVersion.Dictionary" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-1375" y="-482" width="165" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="tXaUiWjBVSACxav1ar_c-6" value="+ words: ArrayList&amp;lt;Word&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="tXaUiWjBVSACxav1ar_c-5" vertex="1">
+        <mxCell id="tXaUiWjBVSACxav1ar_c-6" value="+ words: ArrayList&amp;lt;CommandVersion.Word&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="tXaUiWjBVSACxav1ar_c-5" vertex="1">
           <mxGeometry y="26" width="165" height="26" as="geometry" />
         </mxCell>
         <mxCell id="tXaUiWjBVSACxav1ar_c-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="tXaUiWjBVSACxav1ar_c-5" vertex="1">
           <mxGeometry y="52" width="165" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="tXaUiWjBVSACxav1ar_c-9" value="DictionaryCommandline" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+        <mxCell id="tXaUiWjBVSACxav1ar_c-9" value="CommandVersion.DictionaryCommandline" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-1375" y="-650" width="185" height="150" as="geometry" />
         </mxCell>
         <mxCell id="tXaUiWjBVSACxav1ar_c-10" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="tXaUiWjBVSACxav1ar_c-9" vertex="1">
@@ -37,7 +37,7 @@
         <mxCell id="tXaUiWjBVSACxav1ar_c-12" value="+ showAllWords(): void&lt;br&gt;+ dictionaryBasic(): void&lt;br&gt;+ dictionarySearcher(): void&lt;br&gt;+ dictionaryAdvanced(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="tXaUiWjBVSACxav1ar_c-9" vertex="1">
           <mxGeometry y="60" width="185" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="tXaUiWjBVSACxav1ar_c-13" value="DictionaryManagement" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+        <mxCell id="tXaUiWjBVSACxav1ar_c-13" value="CommandVersion.DictionaryManagement" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-1375" y="-380" width="205" height="154" as="geometry">
             <mxRectangle x="-280" y="-590" width="170" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -120,7 +120,7 @@
         <mxCell id="shpkRwd4xWse0ls5qbsY-2" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="shpkRwd4xWse0ls5qbsY-0">
           <mxGeometry y="26" width="340" height="34" as="geometry" />
         </mxCell>
-        <mxCell id="shpkRwd4xWse0ls5qbsY-3" value="+ getExplanation(String target): Word&lt;br&gt;+ wordSearcher(String target): ArrayList&amp;lt;String&amp;gt;&lt;br&gt;+ addWord(Word): void&lt;br&gt;+ deleteWord(Word): void&lt;br&gt;+ getPronunciation(String target): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="shpkRwd4xWse0ls5qbsY-0">
+        <mxCell id="shpkRwd4xWse0ls5qbsY-3" value="+ getExplanation(String target): CommandVersion.Word&lt;br&gt;+ wordSearcher(String target): ArrayList&amp;lt;String&amp;gt;&lt;br&gt;+ addWord(CommandVersion.Word): void&lt;br&gt;+ deleteWord(CommandVersion.Word): void&lt;br&gt;+ getPronunciation(String target): String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="shpkRwd4xWse0ls5qbsY-0">
           <mxGeometry y="60" width="340" height="140" as="geometry" />
         </mxCell>
         <mxCell id="shpkRwd4xWse0ls5qbsY-4" value="Pronunciation" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
