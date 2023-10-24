@@ -14,8 +14,9 @@ public class DictionaryApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/example.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/views/example.fxml"));
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
         stage.setTitle("Test JavaFX");
         stage.setScene(scene);
         stage.show();
