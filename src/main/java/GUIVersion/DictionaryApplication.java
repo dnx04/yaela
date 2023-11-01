@@ -1,5 +1,6 @@
 package GUIVersion;
 
+import atlantafx.base.theme.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,10 +15,10 @@ public class DictionaryApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/views/example.fxml"));
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
+        Parent root = FXMLLoader.load(getClass().getResource("/views/main.fxml"));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/styles/style.css").toExternalForm());
-        stage.setTitle("Test JavaFX");
+        stage.setTitle("Yaela");
         stage.setScene(scene);
         stage.show();
     }

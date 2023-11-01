@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="628.5" prefWidth="940.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIVersion.controllers.TranslatorController">
+   <children>
+      <TextField layoutX="87.0" layoutY="85.0" prefHeight="431.0" prefWidth="325.0" />
+      <Label alignment="TOP_LEFT" layoutX="522.0" layoutY="87.0" prefHeight="429.0" prefWidth="314.0" text="label" textAlignment="RIGHT" textFill="#25658f">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
