@@ -1,0 +1,15 @@
+CommandVersion/Dictionary.class
+GUIVersion/DictionaryApplication.class
+GUIVersion/controllers/WordbaseController.class
+GUIVersion/controllers/GamesController.class
+CommandVersion/DictionaryCommandline.class
+Database/DictionaryEngine.class
+CommandVersion/Word.class
+Game/Game.class
+GUIVersion/Main.class
+GUIVersion/controllers/SettingsController.class
+GUIVersion/controllers/DictionaryVI_ENController.class
+CommandVersion/DictionaryManagement.class
+GUIVersion/controllers/TranslatorController.class
+GoogleTranslateAPI/Translator.class
+GUIVersion/controllers/DictionaryEN_VIController.class
