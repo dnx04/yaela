@@ -25,7 +25,7 @@ public class Translator {
   }
 
   public static void main(String[] args) throws IOException {
-    String text = "I loved you, so much";
-    System.out.println("Translated text: " + translate("en", "vi", text));
+    String text = "Chào em, rất vui vì được làm quen với em. Anh có thể mời em đi ăn tối được chứ?";
+    System.out.println("Translated text: " + translate("vi", "en", text));
   }
 }
