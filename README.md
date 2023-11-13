@@ -18,4 +18,3 @@ INT2204E 25 final project.
 
     Here you add a new environment variable named JAVAFX with the value is the path to lib folder of the javafx package installed in step 1
     ![Alt text](image-1.png)
-

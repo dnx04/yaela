@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="940.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+    <Tab text="Việt - Anh">
+      <content>
+        <fx:include source="dictionaryVI_EN.fxml" />
+      </content>
+    </Tab>
+    <Tab text="Anh - Việt">
+      <content>
+        <fx:include source="dictionaryEN_VI.fxml" />
+      </content>
+    </Tab>
+    <Tab text="Translator">
+      <content>
+       <fx:include source="translator.fxml" />
+      </content>
+    </Tab>
+    <Tab text="Games">
+      <content>
+        <fx:include source="games.fxml" />
+      </content>
+    </Tab>
+    <Tab text="Wordbase">
+      <content>
+        <fx:include source="wordbase.fxml" />
+      </content>
+    </Tab>
+    <Tab text="Settings">
+      <content>
+        <fx:include source="settings.fxml" />
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>
