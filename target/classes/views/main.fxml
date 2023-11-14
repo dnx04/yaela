@@ -5,14 +5,9 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="940.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
-    <Tab text="Việt - Anh">
+    <Tab text="Từ điển">
       <content>
-        <fx:include source="dictionaryVI_EN.fxml" />
-      </content>
-    </Tab>
-    <Tab text="Anh - Việt">
-      <content>
-        <fx:include source="dictionaryEN_VI.fxml" />
+        <fx:include source="dictionary.fxml" />
       </content>
     </Tab>
     <Tab text="Translator">

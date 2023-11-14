@@ -18,7 +18,7 @@ public class DictionaryApplication extends Application {
         Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
         Parent root = FXMLLoader.load(getClass().getResource("/views/main.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Yaela");
+        stage.setTitle("yaela");
         stage.setScene(scene);
         stage.show();
     }
