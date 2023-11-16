@@ -1,15 +1,14 @@
 package Database;
 
 import java.sql.*;
-import java.util.Scanner;
 
 // POC, not final
-public class DictionaryEngine {
+public class QueryEngine {
     private Connection c = null;
-    public DictionaryEngine() {
+    public QueryEngine(String database) {
         try{
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:./avdict.db");
+            c = DriverManager.getConnection("jdbc:sqlite:" + database);
             c.setAutoCommit(false);
         } catch (Exception e){
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -17,15 +16,13 @@ public class DictionaryEngine {
         }
     }
 
-    public ResultSet wordSearcher(String target){
+    public ResultSet makeQuery(String query){
         Statement st = null;
         ResultSet rs = null;
         try {
             st = c.createStatement();
             // SQLiLite?
-            String query = String.format("SELECT * FROM 'av' WHERE word == '%s';", target);
             rs = st.executeQuery(query);
-            System.out.println(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
