@@ -17,6 +17,7 @@ public class WordleGame extends Game {
     private String pick;
     private Boolean[] exists;
     private TileState[][] ts;
+    private TileState[] keys;
     private int turn;
     private int cur;
     private GameState gs;
@@ -24,6 +25,7 @@ public class WordleGame extends Game {
 
     WordleGame() throws SQLException {
         word = new char[6][5];
+        keys = new TileState[26];
         ts = new TileState[6][5];
         exists = new Boolean[26];
         turn = 0;
@@ -33,6 +35,9 @@ public class WordleGame extends Game {
         pick = rs.getString(1);
         for(int i = 0; i < 5; ++i){
             exists[pick.charAt(i) - 'a'] = true;
+        }
+        for(int i = 0; i < 26; ++i){
+            keys[i] = TileState.BLANK;
         }
         for(int i = 0; i < 6; ++i){
             for(int j = 0; j < 5; ++j){
@@ -54,6 +59,7 @@ public class WordleGame extends Game {
                     } else {
                         ts[turn][i] = TileState.NOT_CONTAIN;
                     }
+                    keys[now.charAt(i) - 'a'] = ts[turn][i];
                     win &= (ts[turn][i] == TileState.CORRECT);
                 }
                 if(win){
@@ -106,6 +112,10 @@ public class WordleGame extends Game {
     }
 
     public Boolean[] getExists() { return exists; }
+
+    public TileState[] getKeys() {
+        return keys;
+    }
 
     public static void main(String[] args) throws SQLException {
         WordleGame wg = new WordleGame();
