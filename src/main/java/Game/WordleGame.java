@@ -33,6 +33,9 @@ public class WordleGame extends Game {
         gs = GameState.IN_PROGRESS;
         ResultSet rs = qe.makeQuery("SELECT * FROM wordlist ORDER BY RANDOM() LIMIT 1");
         pick = rs.getString(1);
+        for(int i = 0; i < 26; ++i){
+            exists[i] = false;
+        }
         for(int i = 0; i < 5; ++i){
             exists[pick.charAt(i) - 'a'] = true;
         }
@@ -48,13 +51,15 @@ public class WordleGame extends Game {
     public void setState(KeyEvent ke){
         if(ke.getCode() == KeyCode.ENTER){
             if(cur == 5){
+                cur = 0;
                 String now = new String(word[turn]).toLowerCase();
                 // check valid, do later
                 boolean win = true;
                 for (int i = 0; i < 5; ++i){
+
                     if(now.charAt(i) == pick.charAt(i)){
                         ts[turn][i] = TileState.CORRECT;
-                    } else if(exists[now.charAt(i) - 'a']){
+                    } else if(exists[now.charAt(i) - 'a'] && now.charAt(i) != pick.charAt(i)){
                         ts[turn][i] = TileState.WRONG_POSITION;
                     } else {
                         ts[turn][i] = TileState.NOT_CONTAIN;
