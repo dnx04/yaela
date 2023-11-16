@@ -11,8 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class WordleGame extends Game {
-    private enum TileState {BLANK, NOT_CONTAIN, WRONG_POSITION, CORRECT};
-    private enum GameState {IN_PROGRESS, LOSE, WIN}
+    protected enum TileState {BLANK, NOT_CONTAIN, WRONG_POSITION, CORRECT};
+    protected enum GameState {IN_PROGRESS, LOSE, WIN}
     private char[][] word;
     private String pick;
     private Boolean[] exists;
@@ -49,7 +49,7 @@ public class WordleGame extends Game {
                 for (int i = 0; i < 5; ++i){
                     if(now.charAt(i) == pick.charAt(i)){
                         ts[turn][i] = TileState.CORRECT;
-                    } else if(exists[now.charAt(i)]){
+                    } else if(exists[now.charAt(i) - 'a']){
                         ts[turn][i] = TileState.WRONG_POSITION;
                     } else {
                         ts[turn][i] = TileState.NOT_CONTAIN;
@@ -72,9 +72,10 @@ public class WordleGame extends Game {
                 word[turn][cur - 1] = 0;
                 --cur;
             }
-        } else if(ke.getCode() == KeyCode.ALPHANUMERIC){
+        } else if(ke.getCode().isLetterKey()){
             if(cur < 5) {
-                word[turn][cur] = ke.getCharacter().charAt(0);
+                word[turn][cur] = ke.getCode().toString().charAt(0);
+                System.out.println(word[turn][cur]);
                 ++cur;
             }
         }
@@ -103,6 +104,8 @@ public class WordleGame extends Game {
     public String getPick() {
         return pick;
     }
+
+    public Boolean[] getExists() { return exists; }
 
     public static void main(String[] args) throws SQLException {
         WordleGame wg = new WordleGame();

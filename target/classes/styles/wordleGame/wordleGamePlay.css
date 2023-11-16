@@ -1,0 +1,38 @@
+.letter-label {
+  -fx-background-color: #b8ccd1;
+}
+
+.guessing-letter {
+  -fx-background-color: #FBFCFF;
+  -fx-border-width: 2.5;
+  -fx-border-color: #a2a3a2;
+  -fx-border-radius: 7;
+  -fx-text-fill: #414A5E;
+}
+
+.true-letter-false-pos {
+  -fx-background-color: #f3c237;
+  -fx-text-fill: white;
+}
+
+.true-letter-true-pos {
+  -fx-background-color: #79b851;
+  -fx-text-fill: white;
+}
+
+.false-letter {
+  -fx-background-color: #a4acc4;
+  -fx-text-fill: white;
+}
+
+.blank-letter {
+  -fx-background-color: #FBFCFF;
+  -fx-border-width: 2.5;
+  -fx-border-color: #DFE1E9;
+  -fx-border-radius: 7;
+}
+
+.not-tried-letter {
+  -fx-background-color: #DCE1ED;
+  -fx-text-fill: #414A5E;
+}
