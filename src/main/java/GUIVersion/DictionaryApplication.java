@@ -15,7 +15,7 @@ public class DictionaryApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
         Parent root = FXMLLoader.load(getClass().getResource("/views/main.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("yaela");

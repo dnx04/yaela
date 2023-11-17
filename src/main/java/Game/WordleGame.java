@@ -11,8 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class WordleGame extends Game {
-    private enum TileState {BLANK, NOT_CONTAIN, WRONG_POSITION, CORRECT};
-    private enum GameState {IN_PROGRESS, LOSE, WIN}
+    protected enum TileState {BLANK, NOT_CONTAIN, WRONG_POSITION, CORRECT};
+    protected enum GameState {IN_PROGRESS, LOSE, WIN}
     private char[][] word;
     private String pick;
     private Boolean[] exists;
@@ -22,8 +22,10 @@ public class WordleGame extends Game {
     private int cur;
     private GameState gs;
     private final QueryEngine qe = new QueryEngine("./wordlelist.db");
+    private int score;
 
     WordleGame() throws SQLException {
+        score = 0;
         word = new char[6][5];
         keys = new TileState[26];
         ts = new TileState[6][5];
@@ -33,6 +35,9 @@ public class WordleGame extends Game {
         gs = GameState.IN_PROGRESS;
         ResultSet rs = qe.makeQuery("SELECT * FROM wordlist ORDER BY RANDOM() LIMIT 1");
         pick = rs.getString(1);
+        for(int i = 0; i < 26; ++i){
+            exists[i] = false;
+        }
         for(int i = 0; i < 5; ++i){
             exists[pick.charAt(i) - 'a'] = true;
         }
@@ -48,13 +53,15 @@ public class WordleGame extends Game {
     public void setState(KeyEvent ke){
         if(ke.getCode() == KeyCode.ENTER){
             if(cur == 5){
+                cur = 0;
                 String now = new String(word[turn]).toLowerCase();
                 // check valid, do later
                 boolean win = true;
                 for (int i = 0; i < 5; ++i){
+
                     if(now.charAt(i) == pick.charAt(i)){
                         ts[turn][i] = TileState.CORRECT;
-                    } else if(exists[now.charAt(i)]){
+                    } else if(exists[now.charAt(i) - 'a'] && now.charAt(i) != pick.charAt(i)){
                         ts[turn][i] = TileState.WRONG_POSITION;
                     } else {
                         ts[turn][i] = TileState.NOT_CONTAIN;
@@ -64,6 +71,7 @@ public class WordleGame extends Game {
                 }
                 if(win){
                     gs = GameState.WIN;
+                    score++;
                     return;
                 }
                 ++turn;
@@ -78,9 +86,9 @@ public class WordleGame extends Game {
                 word[turn][cur - 1] = 0;
                 --cur;
             }
-        } else if(ke.getCode() == KeyCode.ALPHANUMERIC){
+        } else if(ke.getCode().isLetterKey()){
             if(cur < 5) {
-                word[turn][cur] = ke.getCharacter().charAt(0);
+                word[turn][cur] = ke.getCode().toString().charAt(0);
                 ++cur;
             }
         }
@@ -110,8 +118,41 @@ public class WordleGame extends Game {
         return pick;
     }
 
+    public Boolean[] getExists() { return exists; }
+
     public TileState[] getKeys() {
         return keys;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void replay() throws SQLException {
+        if (gs == GameState.LOSE) score = 0;
+        word = new char[6][5];
+        keys = new TileState[26];
+        ts = new TileState[6][5];
+        exists = new Boolean[26];
+        turn = 0;
+        cur = 0;
+        gs = GameState.IN_PROGRESS;
+        ResultSet rs = qe.makeQuery("SELECT * FROM wordlist ORDER BY RANDOM() LIMIT 1");
+        pick = rs.getString(1);
+        for(int i = 0; i < 26; ++i){
+            exists[i] = false;
+        }
+        for(int i = 0; i < 5; ++i){
+            exists[pick.charAt(i) - 'a'] = true;
+        }
+        for(int i = 0; i < 26; ++i){
+            keys[i] = TileState.BLANK;
+        }
+        for(int i = 0; i < 6; ++i){
+            for(int j = 0; j < 5; ++j){
+                ts[i][j] = TileState.BLANK;
+            }
+        }
     }
 
     public static void main(String[] args) throws SQLException {
