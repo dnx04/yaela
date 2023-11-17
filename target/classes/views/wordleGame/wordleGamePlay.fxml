@@ -197,56 +197,56 @@
             </Label>
          </children>
       </GridPane>
-      <VBox layoutX="155.0" layoutY="463.0" prefHeight="145.0" prefWidth="617.0" spacing="7.0">
+      <VBox fx:id="keyBox" layoutX="155.0" layoutY="463.0" prefHeight="145.0" prefWidth="617.0" spacing="7.0">
          <children>
             <HBox prefHeight="45.0" prefWidth="620.0" spacing="7.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="Q">
+                  <Label fx:id="Q" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="Q">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="W">
+                  <Label fx:id="W" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="W">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="false-letter" text="E">
+                  <Label fx:id="E" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="false-letter" text="E">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="R">
+                  <Label fx:id="R" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="R">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="true-letter-false-pos" text="T">
+                  <Label fx:id="T" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="true-letter-false-pos" text="T">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="Y">
+                  <Label fx:id="Y" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="Y">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="U">
+                  <Label fx:id="U" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="U">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="true-letter-false-pos" text="I">
+                  <Label fx:id="I" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="true-letter-false-pos" text="I">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="O">
+                  <Label fx:id="O" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="O">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="P">
+                  <Label fx:id="P" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="P">
                      <font>
                         <Font size="26.0" />
                      </font>
@@ -255,47 +255,47 @@
             </HBox>
             <HBox prefHeight="45.0" prefWidth="620.0" spacing="7.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="false-letter" text="A">
+                  <Label fx:id="A" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="false-letter" text="A">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="true-letter-true-pos" text="S">
+                  <Label fx:id="S" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="true-letter-true-pos" text="S">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="D">
+                  <Label fx:id="D" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="D">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="false-letter" text="F">
+                  <Label fx:id="F" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="false-letter" text="F">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="G">
+                  <Label fx:id="G" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="G">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="false-letter" text="H">
+                  <Label fx:id="H" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="false-letter" text="H">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="J">
+                  <Label fx:id="J" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="J">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="K">
+                  <Label fx:id="K" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="K">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="L">
+                  <Label fx:id="L" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="72.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="L">
                      <font>
                         <Font size="26.0" />
                      </font>
@@ -309,37 +309,37 @@
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="Z">
+                  <Label fx:id="Z" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="Z">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="false-letter" text="X">
+                  <Label fx:id="X" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="false-letter" text="X">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="C">
+                  <Label fx:id="C" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="C">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="V">
+                  <Label fx:id="V" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="V">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="B">
+                  <Label fx:id="B" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="B">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="N">
+                  <Label fx:id="N" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="not-tried-letter" text="N">
                      <font>
                         <Font size="26.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="false-letter" text="M">
+                  <Label fx:id="M" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="59.0" style="-fx-background-radius: 7;" styleClass="false-letter" text="M">
                      <font>
                         <Font size="26.0" />
                      </font>
@@ -358,7 +358,7 @@
             <Font name="System Bold" size="31.0" />
          </font>
       </Label>
-      <Label layoutX="124.0" layoutY="48.0" prefHeight="33.0" prefWidth="70.0" text="5">
+      <Label fx:id="score" layoutX="124.0" layoutY="48.0" prefHeight="33.0" prefWidth="70.0" text="5">
          <font>
             <Font name="System Bold" size="31.0" />
          </font>
