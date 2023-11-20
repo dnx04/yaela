@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="629.0" maxWidth="940.0" prefHeight="628.5" prefWidth="940.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIVersion.controllers.DictionaryController">
+<AnchorPane fx:id="searchPane" maxHeight="629.0" maxWidth="940.0" prefHeight="628.5" prefWidth="940.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIVersion.controllers.DictionaryController">
   <children>
-    <TextField layoutX="244.0" layoutY="34.0" prefHeight="30.0" prefWidth="453.0" />
+    <TextField fx:id="input" layoutX="244.0" layoutY="34.0" onKeyTyped="#search" prefHeight="30.0" prefWidth="453.0" />
     <Separator layoutX="-1.0" layoutY="74.0" prefHeight="24.0" prefWidth="941.0" />
-      <ChoiceBox layoutX="66.0" layoutY="36.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="dictChoiceBox" layoutX="64.0" layoutY="34.0" prefHeight="30.0" prefWidth="155.0" />
+      <WebView fx:id="webView" layoutX="34.0" layoutY="114.0" prefHeight="514.0" prefWidth="879.0" />
+      <ListView fx:id="searchList" layoutX="244.0" layoutY="70.0" prefHeight="293.0" prefWidth="454.0" />
   </children>
 </AnchorPane>

@@ -14,12 +14,12 @@ import javafx.scene.input.ClipboardContent;
 public class TranslatorController implements Initializable {
 
   @FXML
-  private ChoiceBox inputLang;
+  private ChoiceBox<String> inputLang;
   private final String[] inlang = {"Tiếng Việt", "English", "Not detected"};
   private final String[] outlang = {"Tiếng Việt", "English"};
 
   @FXML
-  private ChoiceBox outputLang;
+  private ChoiceBox<String> outputLang;
   final Clipboard clipboard = Clipboard.getSystemClipboard();
 
 
