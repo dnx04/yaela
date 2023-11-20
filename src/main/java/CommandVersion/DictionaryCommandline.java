@@ -1,20 +1,37 @@
 package CommandVersion;
 
+import java.security.SecureRandom;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Comparator;
+
 
 public class DictionaryCommandline extends Dictionary{
 
+    private static int getRandomWithExclusion(SecureRandom rand, int upperBound, ArrayList<Integer> exclude) {
+        ArrayList<Integer> excludeBackup = new ArrayList<>(exclude);
+        excludeBackup.sort(Comparator.naturalOrder());
+        int random = rand.nextInt(upperBound - exclude.size());
+        for (int ex : excludeBackup) {
+            if (random < ex) {
+                break;
+            }
+            random++;
+        }
+        return random;
+    }
+
     public static void showAllWords(){
         System.out.println("No\t| English\t| Vietnamese");
-        for(int i = 0; i < words.size(); i++){
-            System.out.println(i + "\t| " + words.get(i).getWordTarget() + "\t| " + words.get(i).getWordExplain());
+        for(int i = 1; i <= words.size(); i++){
+            System.out.println(i + "\t| " + words.get(i - 1).getWordTarget() + "\t| " + words.get(i - 1).getWordExplain());
         }
     }
 
-    public static void dictionaryBasic(){
-        DictionaryManagement.insertFromCommandline();
-        showAllWords();
-    }
+    // public static void dictionaryBasic(){
+    //     DictionaryManagement.insertFromCommandline();
+    //     showAllWords();
+    // }
 
     public static void dictionarySearcher(){
 
@@ -33,7 +50,7 @@ public class DictionaryCommandline extends Dictionary{
             - Search word is found at the beginning of the target word.
             */
             if(search.length() <= target.length() 
-                && target.substring(0, search.length()).equals(target)){
+                && target.substring(0, search.length()).equals(search)){
                 System.out.println(target);
                 isFound = true;
             } else {
@@ -54,6 +71,45 @@ public class DictionaryCommandline extends Dictionary{
     //UPDATE DICTIONARY GAME
     public static void dictionaryGame(){
 
+        final int NUMBER_OF_ANSWER = 6;
+        final int NUMBER_OF_QUESTION = 10;
+
+        if (words.size() >= NUMBER_OF_ANSWER) {
+
+            SecureRandom rand = new SecureRandom();
+            int upperBound = words.size();
+            int point = 0;
+
+            for (int q = 1; q <= NUMBER_OF_QUESTION; q++) {
+
+                ArrayList<Integer> randomWordIndex = new ArrayList<Integer>();
+
+                for (int i = 0; i < NUMBER_OF_ANSWER; i++) {
+                    randomWordIndex.add(getRandomWithExclusion(rand, upperBound, randomWordIndex));
+                }
+                int answerIndex = rand.nextInt(upperBound + NUMBER_OF_ANSWER - upperBound % NUMBER_OF_ANSWER) % NUMBER_OF_ANSWER;
+
+                System.out.println("Question " + q + ": Find the meaning of the word: " + words.get(randomWordIndex.get(answerIndex)).getWordTarget());
+                for (int i = 1; i <= NUMBER_OF_ANSWER; i++) {
+                    String tmp = Integer.toString(i) + ". " + words.get(randomWordIndex.get(i - 1)).getWordExplain();
+                    System.out.println(tmp);
+                }
+
+                System.out.print("Your answer is: ");
+                Scanner s = new Scanner(System.in);
+                int playerChoose = s.nextInt();
+                if (playerChoose - 1 == answerIndex) {
+                    System.out.println("You are correct!");
+                    ++point;
+                } else {
+                    System.out.println("You are wrong! The right answer is " + Integer.toString(answerIndex + 1));
+                }
+            }
+            System.out.println("End game: " + point + "/" + NUMBER_OF_QUESTION);
+
+        } else {
+            System.out.println("Not enough words for game!");
+        }
     }
 
 
@@ -128,9 +184,5 @@ public class DictionaryCommandline extends Dictionary{
             dictionaryContinue();
             dictionaryFunction();
         }
-    }
-
-    public static void main(String[] args) {
-        dictionaryAdvanced();
     }
 }

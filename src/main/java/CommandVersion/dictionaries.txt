@@ -1,1 +1,30 @@
-Vietnam	country
+abacus	bàn tính
+abalone	bào ngư
+battery	pin
+book	quyển sách
+calculate	tính toán
+calculator	máy tính bỏ túi
+chair	ghế
+drink	uống
+ear	tai
+eat	ăn
+fan	quạt
+fix	sửa chữa
+free	tự do
+friend	bạn bè
+happy	vui vẻ
+horse	con ngựa
+jealous	ghen tị
+laptop	máy tính xách tay
+learn	học
+pig	con lợn
+rainy	mưa
+rate	tỉ lệ
+search	tìm kiếm
+ship	con tàu
+shirt	áo phông
+sleep	ngủ
+table	bàn
+valedictorian	thủ khoa
+vet	bác sĩ thú y
+veteran	cựu chiến binh
