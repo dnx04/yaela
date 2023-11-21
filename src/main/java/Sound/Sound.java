@@ -8,7 +8,7 @@ public class Sound {
         Connection connection = null;
         try {
             Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:D:/avdict.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:avdict.db");
             connection.setAutoCommit(true);
 
             Statement statement = connection.createStatement();

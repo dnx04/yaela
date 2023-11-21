@@ -59,6 +59,13 @@
             <artifactId>javafx-web</artifactId>
             <version>21-ea+24</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun.speech</groupId>
+            <artifactId>freetts</artifactId>
+            <version>1.2.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/freetts.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
