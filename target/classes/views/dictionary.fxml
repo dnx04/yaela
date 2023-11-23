@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
@@ -14,5 +15,6 @@
       <ChoiceBox fx:id="dictChoiceBox" layoutX="64.0" layoutY="34.0" prefHeight="30.0" prefWidth="155.0" />
       <WebView fx:id="webView" layoutX="34.0" layoutY="114.0" prefHeight="514.0" prefWidth="879.0" />
       <ListView fx:id="searchList" layoutX="244.0" layoutY="70.0" prefHeight="293.0" prefWidth="454.0" />
+      <Button fx:id="speaker" layoutX="853.0" layoutY="122.0" mnemonicParsing="false" onAction="#pronounce" prefHeight="40.0" prefWidth="40.0" stylesheets="@../styles/dictionary.css" />
   </children>
 </AnchorPane>

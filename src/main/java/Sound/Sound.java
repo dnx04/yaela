@@ -15,7 +15,7 @@ public class Sound {
             ResultSet resultSet = statement.executeQuery(target);
             while (resultSet.next()) {
                 System.out.println(resultSet.getString(2)
-                        + " - " + resultSet.getString(5));
+                + " - " + resultSet.getString(5));
                 TextToSpeech.TextSpeech(resultSet.getString(2));
             }
         } catch (Exception e) {
