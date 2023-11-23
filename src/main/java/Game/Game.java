@@ -1,9 +1,14 @@
 package Game;
 
-import java.util.ArrayList;
+import com.google.common.collect.SortedMultiset;
+import javafx.scene.input.KeyEvent;
+
+import java.sql.SQLException;
 
 public abstract class Game {
-    private int score = 0;
-    private ArrayList<Integer> high_score;
-    public void run(){};
+    protected int score = 0;
+    protected SortedMultiset<Integer> high_score;
+    public abstract void init() throws SQLException;
+
+    public abstract void setState(KeyEvent ke) throws SQLException;
 }

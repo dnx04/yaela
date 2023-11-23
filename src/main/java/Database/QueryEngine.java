@@ -17,8 +17,8 @@ public class QueryEngine {
     }
 
     public ResultSet makeQuery(String query){
-        Statement st = null;
-        ResultSet rs = null;
+        Statement st;
+        ResultSet rs;
         try {
             st = c.createStatement();
             // SQLiLite?
@@ -27,16 +27,6 @@ public class QueryEngine {
             throw new RuntimeException(e);
         }
         return rs;
-    }
-    // custom vocabulary, implement later, after done all basic GUI functionalities.
-    public void addWord(){
-
-    }
-    public void modifyWord(){
-
-    }
-    public void deleteWord(){
-
     }
 
 
