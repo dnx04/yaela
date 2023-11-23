@@ -59,6 +59,27 @@
             <artifactId>javafx-web</artifactId>
             <version>21-ea+24</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun.speech</groupId>
+            <artifactId>freetts</artifactId>
+            <version>1.2.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/freetts.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.speech.freetts.en.us.cmu_us_kal</groupId>
+            <artifactId>freetts-cmu_us_kal</artifactId>
+            <version>1.2.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/cmu_us_kal.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.speech.freetts.en.us.cmu_time_awb</groupId>
+            <artifactId>freetts-cmu_time_awb</artifactId>
+            <version>1.2.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/cmu_time_awb.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>

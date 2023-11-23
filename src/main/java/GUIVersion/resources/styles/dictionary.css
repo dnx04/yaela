@@ -1,0 +1,8 @@
+#speaker {
+    -fx-background-image: url('../images/speakerIcon.png');
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+  }

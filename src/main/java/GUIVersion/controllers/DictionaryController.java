@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -47,6 +48,10 @@ public class DictionaryController implements Initializable {
     @FXML
     private WebView webView;
     private static String contentWebView = "";
+    private static String word = "";
+    
+    @FXML
+    private Button speaker;
 
     public String getDict(String choice) {
         switch (choice) {
@@ -102,7 +107,11 @@ public class DictionaryController implements Initializable {
                             int selectedIndex = searchList.getSelectionModel().getSelectedIndex();
                             contentWebView = "<html><head><style>body {font-family: \"Calibri\", \"Helvetica\", sans-serif;}</style></head><body>" 
                                 + listDefinition.get(selectedIndex) + "</body></html>";
+                            word = listWord.get(selectedIndex);
                             searchList.setVisible(false);
+                            if (dictChoice == getDict("Anh - Việt")) {
+                                speaker.setVisible(true);
+                            }
                         }
                         webEngine.loadContent(contentWebView);
                     });
@@ -124,9 +133,14 @@ public class DictionaryController implements Initializable {
         }
     }
 
+    public void pronounce() {
+        Sound.TextToSpeech.TextSpeech(word);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dictChoiceBox.getItems().addAll(dicts);
         searchList.setVisible(false);
+        speaker.setVisible(false);
     }
 }
