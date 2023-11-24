@@ -1,15 +1,34 @@
 package GUIVersion.controllers;
 
 import Database.QueryEngine;
+import javafx.beans.binding.Bindings;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
+import java.awt.event.KeyEvent;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static Database.QueryEngine.c;
+import static GUIVersion.controllers.DictionaryController.contentWebView;
+
 public class WordbaseController {
+    private static final int WORD_SEARCH_LIMIT = 10;
+    private static final String NO_WORD_NOTI = "No words found!";
     private final String[] choiceBox = {"Thêm từ", "Xóa từ"};
+    public ListView searchListDelete;
+    public WebView webView;
+    public AnchorPane searchPane;
     @FXML
     private ChoiceBox<String> insertChoiceBox;
 
@@ -36,6 +55,83 @@ public class WordbaseController {
     private AnchorPane sceneDelete;
 
     private Alerts alerts = new Alerts();
+    private static String contentWebView = "";
+    private static String wordWillDelete = "";
+
+
+    public void search(javafx.scene.input.KeyEvent e) throws SQLException {
+        String inputText = deleteWord.getText().trim();
+        searchListDelete.getItems().clear();
+        ObservableList<String> listWord = searchListDelete.getItems();
+        ArrayList<String> stringArrayList = new ArrayList<String>();
+        stringArrayList.clear();
+        WebEngine webEngine = webView.getEngine();
+
+
+
+        if (inputText.isEmpty() || inputText == null) {
+            searchListDelete.setVisible(false);
+        } else {
+            try {
+                String query = "SELECT * FROM av WHERE word LIKE ? LIMIT " + WORD_SEARCH_LIMIT;
+                try (PreparedStatement preparedStatement = c.prepareStatement(query)) {
+                    preparedStatement.setString(1, inputText + "%");
+
+                    try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                        while(resultSet.next()) {
+                            String wordResult = resultSet.getString(2);
+                            String htmlResult = resultSet.getString(3);
+                            listWord.add(wordResult);
+                            stringArrayList.add(htmlResult);
+                        }
+                    }
+                } catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
+                }
+                if (listWord.size() == 0) {
+                    listWord.add(NO_WORD_NOTI);
+                }
+
+                // Set height of search list appropriate to the size of list
+                searchListDelete.prefHeightProperty().bind(Bindings.size(listWord).multiply(41));
+                searchListDelete.setVisible(true);
+
+                if (listWord.size() != 0 && !(listWord.get(0).equals(NO_WORD_NOTI))) {
+
+
+                    searchListDelete.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                        if (newValue != null && !newValue.equals(NO_WORD_NOTI)) {
+                            wordWillDelete = (String) newValue;
+                            int selectedIndex = searchListDelete.getSelectionModel().getSelectedIndex();
+                            if (selectedIndex >= 0 && selectedIndex < stringArrayList.size()) {
+                                contentWebView = "<html><head><style>body {font-family: \"Calibri\", \"Helvetica\", sans-serif;}</style></head><body>"
+                                        + stringArrayList.get(selectedIndex) + "</body></html>";
+                                searchListDelete.setVisible(false);
+                            }
+                            deleteWord.setText(wordWillDelete);
+                        } else {
+                            wordWillDelete = "";
+                            contentWebView = "";
+                        }
+                        webEngine.loadContent(contentWebView);
+                    });
+
+
+                }
+                webView.setVisible(true);
+
+                // Make search list disappear when clicking outside search list region
+                searchPane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    if (!searchListDelete.getBoundsInParent().contains(event.getX(), event.getY())) {
+                        searchListDelete.setVisible(false);
+                    }
+                });
+
+            } catch (RuntimeException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 
     public void initialize() {
         insertChoiceBox.getItems().addAll(choiceBox);
@@ -45,9 +141,15 @@ public class WordbaseController {
         insertChoiceBox.setValue(("Thêm từ"));
         showScene(sceneInsert);
 
+        deleteWord.setOnKeyReleased(event -> {
+            try {
+                search(event);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
         insertChoiceBox.setOnAction(event -> {
-
             String selectedChoice = insertChoiceBox.getValue();
             if ("Thêm từ".equals(selectedChoice)) {
                 showScene(sceneInsert);
@@ -76,8 +178,6 @@ public class WordbaseController {
     private void showScene(AnchorPane scene) {
         sceneInsert.setVisible(scene == sceneInsert);
         sceneDelete.setVisible(scene == sceneDelete);
-        //insertLabel.setVisible(scene == sceneInsert);
-        //deleteLabel.setVisible(scene == sceneDelete);
     }
 
     private void handleAddButton() {
@@ -86,36 +186,44 @@ public class WordbaseController {
 
         if (!newWordText.isEmpty() && !meanWordText.isEmpty()) {
             if (QueryEngine.searchWord(newWordText)) {
-                QueryEngine.insertWord(newWordText, meanWordText);
-                alerts.showAlertInfo("Add Word", "Bạn đã thêm từ thành công.");
+                Optional<ButtonType> option = alerts.showConfirmation("Wait", "Bạn có chắc chắc muốn thêm từ này?");
+                if (option.get() == ButtonType.OK) {
+                    QueryEngine.insertWord(newWordText, meanWordText);
+                    alerts.showAlertInfo("Add Word", "Bạn đã thêm từ thành công.");
+                    newWord.clear();
+                    meanWord.setText("<html>\n" +
+                            "<head>\n" +
+                            "</head>\n" +
+                            "<body>\n" +
+                            "<p></p>\n" +
+                            "<body>\n" +
+                            "</html>");
+                }
             } else {
-                alerts.showAlertInfo("Info", "Từ đã tồn tại");
-                //System.out.println("Từ đã tồn tại trong cơ sở dữ liệu.");
-                // Xử lý thông báo hoặc logic khác tùy thuộc vào yêu cầu của bạn
+                alerts.showAlertInfo("Info", "Từ này đã tồn tại");
             }
         } else {
             alerts.showAlertWarning("Warning", "Vui lòng nhập từ và giải nghĩa");
-            //System.out.println("Vui lòng nhập từ và giải nghĩa.");
         }
     }
 
     private void handleDeleteButton() {
-        String newDeleteWord = deleteWord.getText().trim();
+        Optional<ButtonType> option = alerts.showConfirmation("Wait", "Bạn có chắc chắc muốn xóa từ này?");
 
-        if (!newDeleteWord.isEmpty()) {
-            if (!QueryEngine.searchWord(newDeleteWord)) {
-                QueryEngine.deleteWord(newDeleteWord);
-                alerts.showAlertInfo("Delete Word", "Bạn đã xóa từ thành công.");
-                System.out.println("Từ xóa: " + newDeleteWord);
+        if (option.get() == ButtonType.OK) {
+            if (!wordWillDelete.isEmpty()) {
+                if (!QueryEngine.searchWord(wordWillDelete)) {
+                    QueryEngine.deleteWord(wordWillDelete);
+                    alerts.showAlertInfo("Delete Word", "Bạn đã xóa từ thành công.");
+                    deleteWord.clear();
+                    WebEngine webEngine = webView.getEngine();
+                    webEngine.loadContent("");
+                } else {
+                    alerts.showAlertWarning("Warning", "Không tồn tại trong cơ sở dữ liệu.");
+                }
             } else {
-                alerts.showAlertWarning("Warning", "Không tồn tại trong cơ sở dữ liệu.");
-                //System.out.println("Không tồn tại trong cơ sở dữ liệu.");
-                // Xử lý thông báo hoặc logic khác tùy thuộc vào yêu cầu của bạn
+                alerts.showAlertWarning("Warning", "Vui lòng nhập từ để xóa");
             }
-        } else {
-            alerts.showAlertWarning("Warning", "Vui lòng nhập từ để xóa");
-            //System.out.println("Vui lòng nhập từ khác.");
-            // Xử lý thông báo hoặc logic khác tùy thuộc vào yêu cầu của bạn
         }
     }
 }

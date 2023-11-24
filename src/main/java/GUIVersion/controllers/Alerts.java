@@ -30,14 +30,5 @@ public class Alerts {
         createAlert(Alert.AlertType.WARNING, title, content).showAndWait();
     }
 
-
-    // Example of using alertConfirmation without blocking
-//    public static void main(String[] args) {
-//        Alerts alerts = new Alerts();
-//        Alert confirmationAlert = alerts.alertConfirmation("Confirmation", "Are you sure?");
-//        confirmationAlert.showAndWait()
-//                .filter(response -> response == ButtonType.OK)
-//                .ifPresent(response -> System.out.println("User clicked OK"));
-//    }
 }
 

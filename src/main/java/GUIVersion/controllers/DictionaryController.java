@@ -46,7 +46,8 @@ public class DictionaryController implements Initializable {
 
     @FXML
     private WebView webView;
-    private static String contentWebView = "";
+    public static String contentWebView = "";
+    private static String wordSearch = "";
 
     public String getDict(String choice) {
         switch (choice) {
@@ -98,12 +99,20 @@ public class DictionaryController implements Initializable {
 
                     // Add listener when chosen for each item in list
                     searchList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                        if (newValue != null && newValue != NO_WORD_NOTI) {
+                        if (newValue != null && !newValue.equals(NO_WORD_NOTI)) {
+                            wordSearch = (String) newValue;
                             int selectedIndex = searchList.getSelectionModel().getSelectedIndex();
-                            contentWebView = "<html><head><style>body {font-family: \"Calibri\", \"Helvetica\", sans-serif;}</style></head><body>" 
-                                + listDefinition.get(selectedIndex) + "</body></html>";
-                            searchList.setVisible(false);
+                            if (selectedIndex >= 0 && selectedIndex < listDefinition.size()) {
+                                contentWebView = "<html><head><style>body {font-family: \"Calibri\", \"Helvetica\", sans-serif;}</style></head><body>"
+                                        + listDefinition.get(selectedIndex) + "</body></html>";
+                                searchList.setVisible(false);
+                            }
+                            input.setText(wordSearch);
+                        } else {
+                            wordSearch = "";
+                            contentWebView = "";
                         }
+
                         webEngine.loadContent(contentWebView);
                     });
 
