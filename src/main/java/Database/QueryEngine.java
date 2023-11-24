@@ -47,7 +47,6 @@ public class QueryEngine {
             preparedStatement.setString(2, meanWord);
 
             preparedStatement.executeUpdate();
-            System.out.println("INSERT operation executed successfully.");
             c.commit();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,7 +65,6 @@ public class QueryEngine {
             preparedStatement.setString(1, newWord);
 
             preparedStatement.executeUpdate();
-            System.out.println("DELETE operation executed successfully.");
             c.commit();
         } catch (SQLException e) {
             e.printStackTrace();

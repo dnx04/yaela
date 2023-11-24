@@ -34,11 +34,8 @@ public class WordbaseController {
 
     @FXML
     private AnchorPane sceneDelete;
-    @FXML
-    private Label insertLabel;
 
-    @FXML
-    private Label deleteLabel;
+    private Alerts alerts = new Alerts();
 
     public void initialize() {
         insertChoiceBox.getItems().addAll(choiceBox);
@@ -90,15 +87,15 @@ public class WordbaseController {
         if (!newWordText.isEmpty() && !meanWordText.isEmpty()) {
             if (QueryEngine.searchWord(newWordText)) {
                 QueryEngine.insertWord(newWordText, meanWordText);
-                System.out.println("Từ mới: " + newWordText);
-                System.out.println("Giải nghĩa: " + meanWordText);
+                alerts.showAlertInfo("Add Word", "Bạn đã thêm từ thành công.");
             } else {
-                System.out.println("Từ đã tồn tại trong cơ sở dữ liệu.");
+                alerts.showAlertInfo("Info", "Từ đã tồn tại");
+                //System.out.println("Từ đã tồn tại trong cơ sở dữ liệu.");
                 // Xử lý thông báo hoặc logic khác tùy thuộc vào yêu cầu của bạn
             }
         } else {
-            System.out.println("Vui lòng nhập từ và giải nghĩa.");
-            // Xử lý thông báo hoặc logic khác tùy thuộc vào yêu cầu của bạn
+            alerts.showAlertWarning("Warning", "Vui lòng nhập từ và giải nghĩa");
+            //System.out.println("Vui lòng nhập từ và giải nghĩa.");
         }
     }
 
@@ -108,13 +105,16 @@ public class WordbaseController {
         if (!newDeleteWord.isEmpty()) {
             if (!QueryEngine.searchWord(newDeleteWord)) {
                 QueryEngine.deleteWord(newDeleteWord);
+                alerts.showAlertInfo("Delete Word", "Bạn đã xóa từ thành công.");
                 System.out.println("Từ xóa: " + newDeleteWord);
             } else {
-                System.out.println("Không tồn tại trong cơ sở dữ liệu.");
+                alerts.showAlertWarning("Warning", "Không tồn tại trong cơ sở dữ liệu.");
+                //System.out.println("Không tồn tại trong cơ sở dữ liệu.");
                 // Xử lý thông báo hoặc logic khác tùy thuộc vào yêu cầu của bạn
             }
         } else {
-            System.out.println("Vui lòng nhập từ khác.");
+            alerts.showAlertWarning("Warning", "Vui lòng nhập từ để xóa");
+            //System.out.println("Vui lòng nhập từ khác.");
             // Xử lý thông báo hoặc logic khác tùy thuộc vào yêu cầu của bạn
         }
     }
