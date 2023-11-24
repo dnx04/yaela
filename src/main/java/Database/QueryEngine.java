@@ -1,10 +1,11 @@
 package Database;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 // POC, not final
 public class QueryEngine {
-    private Connection c = null;
+    public static Connection c= null;
     public QueryEngine(String database) {
         try{
             Class.forName("org.sqlite.JDBC");
@@ -38,6 +39,65 @@ public class QueryEngine {
     public void deleteWord(){
 
     }
+    public static void insertWord(String newWord, String meanWord) {
+        String insertQuery = "INSERT INTO av (word, html) " + " VALUES (?, ?)";
+
+        try (PreparedStatement preparedStatement = c.prepareStatement(insertQuery)) {
+            preparedStatement.setString(1, newWord);
+            preparedStatement.setString(2, meanWord);
+
+            preparedStatement.executeUpdate();
+            System.out.println("INSERT operation executed successfully.");
+            c.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                c.rollback();
+            } catch (SQLException rollbackException) {
+                rollbackException.printStackTrace();
+            }
+        }
+    }
+
+    // Hàm thực hiện DELETE
+    public static void deleteWord(String newWord) {
+        String deleteQuery = "DELETE FROM av WHERE word = ?";
+        try (PreparedStatement preparedStatement = c.prepareStatement(deleteQuery)) {
+            preparedStatement.setString(1, newWord);
+
+            preparedStatement.executeUpdate();
+            System.out.println("DELETE operation executed successfully.");
+            c.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            c.rollback();
+        } catch (SQLException rollbackException) {
+            rollbackException.printStackTrace();
+        }
+    }
+
+    public static boolean searchWord(String word) {
+        String selectQuery = "SELECT * FROM av WHERE word = ?";
+        int rowCount = 0;
+        ArrayList<String> listWord = new ArrayList<>();
+
+        try (PreparedStatement preparedStatement = c.prepareStatement(selectQuery)) {
+            preparedStatement.setString(1, word);
+
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                while(resultSet.next()) {
+                    String wordResult = resultSet.getString(2);
+                    listWord.add(wordResult);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listWord.size() == 0;
+    }
+
 
 
 
