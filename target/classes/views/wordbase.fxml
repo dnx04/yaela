@@ -43,7 +43,7 @@
                         </Pane>
                   <WebView fx:id="webView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="150.0" />
                   <ListView fx:id="searchListDelete" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="290.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="115.0" />
-                        <Button fx:id="deleteButton" layoutX="50.0" layoutY="330.0" mnemonicParsing="false" style="-fx-background-color: #427ea1;" text="Button" textFill="#fbfcfc" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="720.0" AnchorPane.topAnchor="460.0">
+                        <Button fx:id="deleteButton" layoutX="50.0" layoutY="330.0" mnemonicParsing="false" style="-fx-background-color: #427ea1;" text="Delete Word" textFill="#fbfcfc" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="720.0" AnchorPane.topAnchor="460.0">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -81,7 +81,7 @@
                         </Pane>
                         <Pane layoutX="115.0" layoutY="116.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ececec;" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="160.0">
                             <children>
-                                <TextArea fx:id="meanWord" layoutX="50.0" layoutY="80.0" prefHeight="190.0" prefWidth="740.0" promptText="Nhập giải nghĩa của từ" style="-fx-border-color: #0b9e03; -fx-border-radius: 2%; -fx-border-width: 2;" text="&lt;html&gt;&#10;&lt;head&gt;&#10;&lt;/head&gt;&#10;&lt;body&gt;&#10;&lt;p&gt;&lt;/p&gt;&#10;&lt;body&gt;&#10;&lt;/html&gt;">
+                                <TextArea fx:id="meanWord" layoutX="44.0" layoutY="81.0" prefHeight="190.0" prefWidth="740.0" promptText="Nhập giải nghĩa của từ" style="-fx-border-color: #0b9e03; -fx-border-radius: 2%; -fx-border-width: 2;" text="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&#10;&lt;body&gt;&#10;&lt;p&gt;                                      &lt;/p&gt;&#10;&lt;body&gt;&#10;&lt;/html&gt;">
                                     <font>
                                         <Font name="System Italic" size="16.0" />
                                     </font>
@@ -93,7 +93,7 @@
                                 </Label>
                             </children>
                         </Pane>
-                        <Button fx:id="addButton" layoutX="50.0" layoutY="330.0" mnemonicParsing="false" style="-fx-background-color: #427ea1;" text="Button" textFill="#fbfcfc" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="720.0" AnchorPane.topAnchor="460.0">
+                        <Button fx:id="addButton" layoutX="50.0" layoutY="330.0" mnemonicParsing="false" style="-fx-background-color: #427ea1;" text="Add Word" textFill="#fbfcfc" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="720.0" AnchorPane.topAnchor="460.0">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>

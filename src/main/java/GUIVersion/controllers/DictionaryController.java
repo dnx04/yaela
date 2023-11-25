@@ -50,11 +50,15 @@ public class DictionaryController implements Initializable {
     private static String wordSearch = "";
 
     public String getDict(String choice) {
-        switch (choice) {
-          case "Việt - Anh":
-            return "va";
-          case "Anh - Việt":
-            return "av";
+        if (choice != null) {
+            switch (choice) {
+                case "Việt - Anh":
+                    return "va";
+                case "Anh - Việt":
+                    return "av";
+                default:
+                    return "";
+            }
         }
         return "";
       }
@@ -78,54 +82,57 @@ public class DictionaryController implements Initializable {
         } else {
             try {
                 String dictChoice = getDict(dictChoiceBox.getValue());
-                String query = "SELECT * FROM '" + dictChoice 
-                    + "' WHERE word LIKE '" + inputText + "%' LIMIT " + WORD_SEARCH_LIMIT;
-                ResultSet rs = queryEngine.makeQuery(query);
-                while (rs.next()) {
-                    String word = rs.getString(2);
-                    String def = rs.getString(3);
-                    listWord.add(word);
-                    listDefinition.add(def);
-                }
-                if (listWord.size() == 0) {
-                    listWord.add(NO_WORD_NOTI);
-                }
-
-                // Set height of search list appropriate to the size of list
-                searchList.prefHeightProperty().bind(Bindings.size(listWord).multiply(41));
-                searchList.setVisible(true);
-
-                if (listWord.size() != 0 && !(listWord.get(0).equals(NO_WORD_NOTI))) {
-
-                    // Add listener when chosen for each item in list
-                    searchList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                        if (newValue != null && !newValue.equals(NO_WORD_NOTI)) {
-                            wordSearch = (String) newValue;
-                            int selectedIndex = searchList.getSelectionModel().getSelectedIndex();
-                            if (selectedIndex >= 0 && selectedIndex < listDefinition.size()) {
-                                contentWebView = "<html><head><style>body {font-family: \"Calibri\", \"Helvetica\", sans-serif;}</style></head><body>"
-                                        + listDefinition.get(selectedIndex) + "</body></html>";
-                                searchList.setVisible(false);
-                            }
-                            input.setText(wordSearch);
-                        } else {
-                            wordSearch = "";
-                            contentWebView = "";
-                        }
-
-                        webEngine.loadContent(contentWebView);
-                    });
-
-                    
-                }
-                webView.setVisible(true);
-
-                // Make search list disappear when clicking outside search list region
-                searchPane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
-                    if (!searchList.getBoundsInParent().contains(event.getX(), event.getY())) {
-                        searchList.setVisible(false);
+                if (dictChoice != null && !dictChoice.isEmpty()) {
+                    String query = "SELECT * FROM " + dictChoice
+                            + " WHERE word LIKE '" + inputText + "%' LIMIT " + WORD_SEARCH_LIMIT;
+                    ResultSet rs = queryEngine.makeQuery(query);
+                    while (rs.next()) {
+                        String word = rs.getString(2);
+                        String def = rs.getString(3);
+                        listWord.add(word);
+                        listDefinition.add(def);
                     }
-                });
+
+                    if (listWord.size() == 0) {
+                        listWord.add(NO_WORD_NOTI);
+                    }
+
+                    // Set height of search list appropriate to the size of list
+                    searchList.prefHeightProperty().bind(Bindings.size(listWord).multiply(41));
+                    searchList.setVisible(true);
+
+                    if (listWord.size() != 0 && !(listWord.get(0).equals(NO_WORD_NOTI))) {
+
+                        // Add listener when chosen for each item in list
+                        searchList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                            if (newValue != null && !newValue.equals(NO_WORD_NOTI)) {
+                                wordSearch = (String) newValue;
+                                int selectedIndex = searchList.getSelectionModel().getSelectedIndex();
+                                if (selectedIndex >= 0 && selectedIndex < listDefinition.size()) {
+                                    contentWebView = "<html><head><style>body {font-family: \"Calibri\", \"Helvetica\", sans-serif;}</style></head><body>"
+                                            + listDefinition.get(selectedIndex) + "</body></html>";
+                                    searchList.setVisible(false);
+                                }
+                                input.setText(wordSearch);
+                            } else {
+                                wordSearch = "";
+                                contentWebView = "";
+                            }
+
+                            webEngine.loadContent(contentWebView);
+                        });
+
+
+                    }
+                    webView.setVisible(true);
+
+                    // Make search list disappear when clicking outside search list region
+                    searchPane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                        if (!searchList.getBoundsInParent().contains(event.getX(), event.getY())) {
+                            searchList.setVisible(false);
+                        }
+                    });
+                }
 
             } catch (SQLException | RuntimeException ex) {
                 ex.printStackTrace();

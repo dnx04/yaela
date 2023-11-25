@@ -157,6 +157,12 @@ public class WordbaseController {
             } else if ("Xóa từ".equals(selectedChoice)) {
                 showScene(sceneDelete);
                 deleteChoiceBox.setValue("Xóa từ");
+                newWord.clear();
+                meanWord.setText("<html><head></head>\n" +
+                        "<body>\n" +
+                        "<p>                                      </p>\n" +
+                        "<body>\n" +
+                        "</html>");
             }
         });
 
@@ -165,6 +171,9 @@ public class WordbaseController {
             if ("Thêm từ".equals(selectedChoice)) {
                 showScene(sceneInsert);
                 insertChoiceBox.setValue("Thêm từ");
+                deleteWord.clear();
+                WebEngine webEngine = webView.getEngine();
+                webEngine.loadContent("");
             } else if ("Xóa từ".equals(selectedChoice)) {
                 showScene(sceneDelete);
                 insertChoiceBox.setValue(null);
@@ -191,11 +200,9 @@ public class WordbaseController {
                     QueryEngine.insertWord(newWordText, meanWordText);
                     alerts.showAlertInfo("Add Word", "Bạn đã thêm từ thành công.");
                     newWord.clear();
-                    meanWord.setText("<html>\n" +
-                            "<head>\n" +
-                            "</head>\n" +
+                    meanWord.setText("<html><head></head>\n" +
                             "<body>\n" +
-                            "<p></p>\n" +
+                            "<p>                                      </p>\n" +
                             "<body>\n" +
                             "</html>");
                 }
@@ -203,7 +210,7 @@ public class WordbaseController {
                 alerts.showAlertInfo("Info", "Từ này đã tồn tại");
             }
         } else {
-            alerts.showAlertWarning("Warning", "Vui lòng nhập từ và giải nghĩa");
+            alerts.showAlertWarning("Warning", "Vui lòng nhập đầy đủ từ và giải nghĩa");
         }
     }
 
@@ -222,7 +229,7 @@ public class WordbaseController {
                     alerts.showAlertWarning("Warning", "Không tồn tại trong cơ sở dữ liệu.");
                 }
             } else {
-                alerts.showAlertWarning("Warning", "Vui lòng nhập từ để xóa");
+                alerts.showAlertWarning("Warning", "Vui lòng chọn từ để xóa");
             }
         }
     }
