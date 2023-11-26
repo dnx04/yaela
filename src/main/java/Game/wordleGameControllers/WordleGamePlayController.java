@@ -1,5 +1,6 @@
-package Game;
+package Game.wordleGameControllers;
 
+import Game.WordleGame;
 import Game.WordleGame.GameState;
 import java.io.IOException;
 import java.net.URL;

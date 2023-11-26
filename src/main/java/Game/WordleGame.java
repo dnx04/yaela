@@ -9,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class WordleGame extends Game {
-    protected enum TileState {BLANK, NOT_CONTAIN, WRONG_POSITION, CORRECT};
-    protected enum GameState {IN_PROGRESS, LOSE, WIN}
+    public enum TileState {BLANK, NOT_CONTAIN, WRONG_POSITION, CORRECT};
+    public enum GameState {IN_PROGRESS, LOSE, WIN}
     private char[][] word;
     private boolean valid;
     private String pick;
@@ -23,7 +23,7 @@ public class WordleGame extends Game {
     private final QueryEngine qe = new QueryEngine("./wordlelist.db");
     private ArrayList<Integer> highscore;
 
-    WordleGame() throws SQLException {
+    public WordleGame() throws SQLException {
         highscore = new ArrayList<>();
         score = 0;
         init();
