@@ -14,6 +14,7 @@ public class MCQGamePlayController {
 
   Stage stage;
   Scene scene;
+
   public void changeSceneToMenu(ActionEvent e) throws IOException {
     Parent root = FXMLLoader.load(getClass().getResource("/views/mcqGame/mcqGameMenu.fxml"));
     stage = (Stage)((Node)e.getSource()).getScene().getWindow();

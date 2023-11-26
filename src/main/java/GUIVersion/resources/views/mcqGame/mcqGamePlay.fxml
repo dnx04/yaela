@@ -14,12 +14,12 @@
             <Image url="@../../images/mcqGameBackGround.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="655.0" layoutY="131.0">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="651.0" layoutY="135.0">
          <image>
             <Image url="@../../images/activeHeart.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="773.0" layoutY="131.0">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="779.0" layoutY="135.0">
          <image>
             <Image url="@../../images/deadHeart.png" />
          </image>
@@ -49,7 +49,7 @@
             <Font name="System Bold" size="31.0" />
          </font>
       </Button>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="715.0" layoutY="131.0">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="715.0" layoutY="135.0">
          <image>
             <Image url="@../../images/activeHeart.png" />
          </image>
@@ -59,7 +59,7 @@
             <Font name="System Bold" size="48.0" />
          </font>
       </Label>
-      <Label layoutX="203.0" layoutY="74.0" prefHeight="60.0" prefWidth="72.0" text="5" textFill="WHITE">
+      <Label fx:id="scoreLabel" layoutX="203.0" layoutY="74.0" prefHeight="60.0" prefWidth="72.0" text="5" textFill="WHITE">
          <font>
             <Font name="System Bold" size="48.0" />
          </font>
@@ -79,5 +79,20 @@
             <Font name="System Bold" size="35.0" />
          </font>
       </Label>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="715.0" layoutY="135.0">
+         <image>
+            <Image url="@../../images/deadHeart.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="651.0" layoutY="135.0">
+         <image>
+            <Image url="@../../images/deadHeart.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="779.0" layoutY="135.0">
+         <image>
+            <Image url="@../../images/activeHeart.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
