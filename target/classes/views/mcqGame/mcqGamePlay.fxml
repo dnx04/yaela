@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -7,39 +12,39 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="gameAnchor" prefHeight="640.0" prefWidth="900.0" stylesheets="@../../styles/mcqGame/mcqGamePlay.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.mcqGameControllers.MCQGamePlayController">
+<AnchorPane fx:id="gameAnchor" prefHeight="640.0" prefWidth="900.0" stylesheets="@../../styles/mcqGame/mcqGamePlay.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.mcqGameControllers.MCQGamePlayController">
    <children>
       <ImageView fitHeight="640.0" fitWidth="900.0">
          <image>
             <Image url="@../../images/mcqGameBackGround.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="655.0" layoutY="131.0">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="651.0" layoutY="135.0">
          <image>
             <Image url="@../../images/activeHeart.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="773.0" layoutY="131.0">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="779.0" layoutY="135.0">
          <image>
             <Image url="@../../images/deadHeart.png" />
          </image>
       </ImageView>
-      <Button fx:id="buttonA" layoutX="102.0" layoutY="349.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter" text="A. Wicked">
+      <Button fx:id="buttonA" layoutX="102.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleAnswerSelection" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter" text="A. Wicked">
          <font>
             <Font size="31.0" />
          </font>
       </Button>
-      <Button fx:id="buttonC" layoutX="102.0" layoutY="442.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter" text="C. Evil">
+      <Button fx:id="buttonC" layoutX="102.0" layoutY="442.0" mnemonicParsing="false" onAction="#handleAnswerSelection" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter" text="C. Evil">
          <font>
             <Font size="31.0" />
          </font>
       </Button>
-      <Button fx:id="buttonB" layoutX="489.0" layoutY="349.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter" text="B. Cunning">
+      <Button fx:id="buttonB" layoutX="489.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleAnswerSelection" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter" text="B. Cunning">
          <font>
             <Font size="31.0" />
          </font>
       </Button>
-      <Button fx:id="buttonD" layoutX="489.0" layoutY="442.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter" text="D. Malicious">
+      <Button fx:id="buttonD" layoutX="489.0" layoutY="442.0" mnemonicParsing="false" onAction="#handleAnswerSelection" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter" text="D. Malicious">
          <font>
             <Font size="31.0" />
          </font>
@@ -49,7 +54,7 @@
             <Font name="System Bold" size="31.0" />
          </font>
       </Button>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="715.0" layoutY="131.0">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="715.0" layoutY="135.0">
          <image>
             <Image url="@../../images/activeHeart.png" />
          </image>
@@ -59,12 +64,12 @@
             <Font name="System Bold" size="48.0" />
          </font>
       </Label>
-      <Label layoutX="203.0" layoutY="74.0" prefHeight="60.0" prefWidth="72.0" text="5" textFill="WHITE">
+      <Label fx:id="scoreLabel" layoutX="203.0" layoutY="74.0" prefHeight="60.0" prefWidth="72.0" text="5" textFill="WHITE">
          <font>
             <Font name="System Bold" size="48.0" />
          </font>
       </Label>
-      <Label alignment="TOP_LEFT" layoutX="62.0" layoutY="215.0" prefHeight="108.0" prefWidth="781.0" style="-fx-background-radius: 7;" styleClass="blank-letter" text="Từ gì sau đây có nghĩa là gian xảo, quỷ quyệt?">
+      <Label fx:id="questionLabel" alignment="TOP_LEFT" layoutX="62.0" layoutY="215.0" prefHeight="108.0" prefWidth="781.0" style="-fx-background-radius: 7;" styleClass="blank-letter" text="Từ gì sau đây có nghĩa là gian xảo, quỷ quyệt?">
          <font>
             <Font name="AkayaTelivigala-Regular" size="31.0" />
          </font>
@@ -74,10 +79,25 @@
             <Font name="System Bold" size="35.0" />
          </font>
       </Label>
-      <Label layoutX="152.0" layoutY="138.0" text="3 / 5" textFill="WHITE">
+      <Label fx:id="numberQuestion" layoutX="152.0" layoutY="138.0" text="3" textFill="WHITE">
          <font>
             <Font name="System Bold" size="35.0" />
          </font>
       </Label>
+      <ImageView fx:id="life1" fitHeight="50.0" fitWidth="50.0" layoutX="651.0" layoutY="135.0">
+         <image>
+            <Image url="@../../images/deadHeart.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="life2" fitHeight="50.0" fitWidth="50.0" layoutX="715.0" layoutY="135.0">
+         <image>
+            <Image url="@../../images/deadHeart.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="life3" fitHeight="50.0" fitWidth="50.0" layoutX="779.0" layoutY="135.0">
+         <image>
+            <Image url="@../../images/activeHeart.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
