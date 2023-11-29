@@ -19,32 +19,37 @@
             <Image url="@../../images/mcqGameBackGround.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="651.0" layoutY="135.0">
+      <ImageView fx:id="life1" fitHeight="50.0" fitWidth="50.0" layoutX="651.0" layoutY="135.0">
          <image>
             <Image url="@../../images/activeHeart.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="779.0" layoutY="135.0">
+      <ImageView fx:id="life2" fitHeight="50.0" fitWidth="50.0" layoutX="715.0" layoutY="135.0">
+         <image>
+            <Image url="@../../images/activeHeart.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="life3" fitHeight="50.0" fitWidth="50.0" layoutX="779.0" layoutY="135.0">
          <image>
             <Image url="@../../images/deadHeart.png" />
          </image>
       </ImageView>
-      <Button fx:id="buttonA" layoutX="102.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleAnswerSelection" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter" text="A. Wicked">
+      <Button fx:id="buttonA" layoutX="102.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleAnswerSelection" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter">
          <font>
             <Font size="31.0" />
          </font>
       </Button>
-      <Button fx:id="buttonC" layoutX="102.0" layoutY="442.0" mnemonicParsing="false" onAction="#handleAnswerSelection" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter" text="C. Evil">
+      <Button fx:id="buttonC" layoutX="102.0" layoutY="442.0" mnemonicParsing="false" onAction="#handleAnswerSelection" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter">
          <font>
             <Font size="31.0" />
          </font>
       </Button>
-      <Button fx:id="buttonB" layoutX="489.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleAnswerSelection" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter" text="B. Cunning">
+      <Button fx:id="buttonB" layoutX="489.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleAnswerSelection" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter">
          <font>
             <Font size="31.0" />
          </font>
       </Button>
-      <Button fx:id="buttonD" layoutX="489.0" layoutY="442.0" mnemonicParsing="false" onAction="#handleAnswerSelection" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter" text="D. Malicious">
+      <Button fx:id="buttonD" layoutX="489.0" layoutY="442.0" mnemonicParsing="false" onAction="#handleAnswerSelection" prefHeight="68.0" prefWidth="324.0" style="-fx-background-radius: 7;" styleClass="guessing-letter">
          <font>
             <Font size="31.0" />
          </font>
@@ -54,11 +59,6 @@
             <Font name="System Bold" size="31.0" />
          </font>
       </Button>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="715.0" layoutY="135.0">
-         <image>
-            <Image url="@../../images/activeHeart.png" />
-         </image>
-      </ImageView>
       <Label layoutX="64.0" layoutY="74.0" text="Score:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="48.0" />
@@ -84,17 +84,17 @@
             <Font name="System Bold" size="35.0" />
          </font>
       </Label>
-      <ImageView fx:id="life1" fitHeight="50.0" fitWidth="50.0" layoutX="651.0" layoutY="135.0">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="651.0" layoutY="135.0">
          <image>
             <Image url="@../../images/deadHeart.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="life2" fitHeight="50.0" fitWidth="50.0" layoutX="715.0" layoutY="135.0">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="715.0" layoutY="135.0">
          <image>
             <Image url="@../../images/deadHeart.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="life3" fitHeight="50.0" fitWidth="50.0" layoutX="779.0" layoutY="135.0">
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="779.0" layoutY="135.0">
          <image>
             <Image url="@../../images/activeHeart.png" />
          </image>

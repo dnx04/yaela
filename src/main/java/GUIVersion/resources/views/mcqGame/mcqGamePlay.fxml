@@ -20,7 +20,7 @@
          </image>
       </ImageView>
       <ImageView fx:id="life1" fitHeight="50.0" fitWidth="50.0" layoutX="651.0" layoutY="135.0">
-         //<image>
+         <image>
             <Image url="@../../images/activeHeart.png" />
          </image>
       </ImageView>
