@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import com.google.common.collect.SortedMultiset;
+
 public class MCQGame extends Game {
     private List<String> words;
     private String currentQuestion;
@@ -54,26 +56,25 @@ public class MCQGame extends Game {
         return null;
     }
 
-public void setState(String choice) {
-    switch (choice) {
-        case "A":
-            checkUserAnswer(0);
-            break;
-        case "B":
-            checkUserAnswer(1);
-            break;
-        case "C":
-            checkUserAnswer(2);
-            break;
-        case "D":
-            checkUserAnswer(3);
-            break;
-        default:
-            break;
+    public void setState(String choice) {
+        switch (choice) {
+            case "A":
+                checkUserAnswer(0);
+                break;
+            case "B":
+                checkUserAnswer(1);
+                break;
+            case "C":
+                checkUserAnswer(2);
+                break;
+            case "D":
+                checkUserAnswer(3);
+                break;
+            default:
+                break;
+        }
+        selectNewQuestion();
     }
-    //mới thêm
-    selectNewQuestion();
-}
 
     private void checkUserAnswer(int selectedIndex) {
         if (selectedIndex >= 0 && selectedIndex < 4) {

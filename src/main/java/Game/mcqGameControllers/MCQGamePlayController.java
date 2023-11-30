@@ -4,6 +4,7 @@ import Game.MCQGame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,8 +14,10 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MCQGamePlayController {
+public class MCQGamePlayController implements Initializable {
   @FXML
   Button quitButton;
   @FXML
@@ -45,11 +48,14 @@ public class MCQGamePlayController {
 
   public int remainingLives = 3;
 
-  public void initialize() {
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
     mcqGame = new MCQGame();
+    questionLabel.setWrapText(true);
     loadQuestion();
     updateUI();
   }
+  
   public void changeSceneToMenu(ActionEvent e) throws IOException {
     Parent root = FXMLLoader.load(getClass().getResource("/views/mcqGame/mcqGameMenu.fxml"));
     stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -57,9 +63,11 @@ public class MCQGamePlayController {
     stage.setScene(scene);
     stage.show();
   }
+
   public void updateQuestionLabel(String newQuestion) {
     questionLabel.setText("Từ sau đây có nghĩa là " + newQuestion);
   }
+
   public void loadQuestion() {
     if (!mcqGame.isGameEnded()) {
       String s = Integer.toString(mcqGame.getScore());
@@ -88,25 +96,20 @@ public class MCQGamePlayController {
   public void handleAnswerSelection(ActionEvent event) {
     Button selectedButton = (Button) event.getSource();
     String choice = selectedButton.getId().substring(6);
-    System.out.println(choice);
     mcqGame.setState(choice);
-    //set mạng
-  //  if (!isCorrect) {
-  //    remainingLives--;
-  //    switch (remainingLives) {
-  //      case 2:
-  //        life3.isVisible(false);
-  //        break;
-  //      case 1:
-  //        life2.isVisible(false);
-  //        break;
-  //      case 0:
-  //        life1.isVisible(false);
-  //        break;
-  //      default:
-  //        break;
-  //    }
-  //  }
+
+    int errorCount = mcqGame.getErrorCount();
+    System.out.println(errorCount);
+    if (errorCount >= 1) {
+      life3.setVisible(false);
+    }
+    if (errorCount >= 2) {
+      life2.setVisible(false);
+    }
+    if (errorCount >= 3) {
+      life1.setVisible(false);
+    }
+
     loadQuestion();
     updateUI();
   }
