@@ -23,12 +23,9 @@ public class MCQGame extends Game {
     private static QueryEngine queryEngine = new QueryEngine("avdict.db");
 
     public MCQGame() {
-        words = new ArrayList<>();
-        initializeWordsFromDatabase();
+        highscore = new ArrayList<>();
         score = 0;
-        errorCount = 0;
-        gameEnded = false;
-        selectNewQuestion();
+        init();
     }
 
     private void initializeWordsFromDatabase() {
@@ -124,8 +121,12 @@ public class MCQGame extends Game {
     }
 
     @Override
-    public void init() throws SQLException {
-
+    public void init() {
+        words = new ArrayList<>();
+        initializeWordsFromDatabase();
+        errorCount = 0;
+        gameEnded = false;
+        selectNewQuestion();
     }
 
     @Override

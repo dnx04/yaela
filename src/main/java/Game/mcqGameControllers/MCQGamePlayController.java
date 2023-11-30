@@ -46,8 +46,6 @@ public class MCQGamePlayController implements Initializable {
 
   MCQGame mcqGame;
 
-  public int remainingLives = 3;
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     mcqGame = new MCQGame();
