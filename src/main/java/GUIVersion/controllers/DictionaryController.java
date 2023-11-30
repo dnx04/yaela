@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -46,19 +47,18 @@ public class DictionaryController implements Initializable {
 
     @FXML
     private WebView webView;
-    public static String contentWebView = "";
-    private static String wordSearch = "";
+    private static String contentWebView = "";
+    private static String word = "";
+    
+    @FXML
+    private Button speaker;
 
     public String getDict(String choice) {
-        if (choice != null) {
-            switch (choice) {
-                case "Việt - Anh":
-                    return "va";
-                case "Anh - Việt":
-                    return "av";
-                default:
-                    return "";
-            }
+        switch (choice) {
+          case "Việt - Anh":
+            return "va";
+          case "Anh - Việt":
+            return "av";
         }
         return "";
       }
@@ -82,57 +82,50 @@ public class DictionaryController implements Initializable {
         } else {
             try {
                 String dictChoice = getDict(dictChoiceBox.getValue());
-                if (dictChoice != null && !dictChoice.isEmpty()) {
-                    String query = "SELECT * FROM " + dictChoice
-                            + " WHERE word LIKE '" + inputText + "%' LIMIT " + WORD_SEARCH_LIMIT;
-                    ResultSet rs = queryEngine.makeQuery(query);
-                    while (rs.next()) {
-                        String word = rs.getString(2);
-                        String def = rs.getString(3);
-                        listWord.add(word);
-                        listDefinition.add(def);
-                    }
-
-                    if (listWord.size() == 0) {
-                        listWord.add(NO_WORD_NOTI);
-                    }
-
-                    // Set height of search list appropriate to the size of list
-                    searchList.prefHeightProperty().bind(Bindings.size(listWord).multiply(41));
-                    searchList.setVisible(true);
-
-                    if (listWord.size() != 0 && !(listWord.get(0).equals(NO_WORD_NOTI))) {
-
-                        // Add listener when chosen for each item in list
-                        searchList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                            if (newValue != null && !newValue.equals(NO_WORD_NOTI)) {
-                                wordSearch = (String) newValue;
-                                int selectedIndex = searchList.getSelectionModel().getSelectedIndex();
-                                if (selectedIndex >= 0 && selectedIndex < listDefinition.size()) {
-                                    contentWebView = "<html><head><style>body {font-family: \"Calibri\", \"Helvetica\", sans-serif;}</style></head><body>"
-                                            + listDefinition.get(selectedIndex) + "</body></html>";
-                                    searchList.setVisible(false);
-                                }
-                                input.setText(wordSearch);
-                            } else {
-                                wordSearch = "";
-                                contentWebView = "";
-                            }
-
-                            webEngine.loadContent(contentWebView);
-                        });
-
-
-                    }
-                    webView.setVisible(true);
-
-                    // Make search list disappear when clicking outside search list region
-                    searchPane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
-                        if (!searchList.getBoundsInParent().contains(event.getX(), event.getY())) {
-                            searchList.setVisible(false);
-                        }
-                    });
+                String query = "SELECT * FROM '" + dictChoice 
+                    + "' WHERE word LIKE '" + inputText + "%' LIMIT " + WORD_SEARCH_LIMIT;
+                ResultSet rs = queryEngine.makeQuery(query);
+                while (rs.next()) {
+                    String word = rs.getString(2);
+                    String def = rs.getString(3);
+                    listWord.add(word);
+                    listDefinition.add(def);
                 }
+                if (listWord.size() == 0) {
+                    listWord.add(NO_WORD_NOTI);
+                }
+
+                // Set height of search list appropriate to the size of list
+                searchList.prefHeightProperty().bind(Bindings.size(listWord).multiply(41));
+                searchList.setVisible(true);
+
+                if (listWord.size() != 0 && !(listWord.get(0).equals(NO_WORD_NOTI))) {
+
+                    // Add listener when chosen for each item in list
+                    searchList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                        if (newValue != null && newValue != NO_WORD_NOTI) {
+                            int selectedIndex = searchList.getSelectionModel().getSelectedIndex();
+                            contentWebView = "<html><head><style>body {font-family: \"Calibri\", \"Helvetica\", sans-serif;}</style></head><body>" 
+                                + listDefinition.get(selectedIndex) + "</body></html>";
+                            word = listWord.get(selectedIndex);
+                            searchList.setVisible(false);
+                            if (dictChoice == getDict("Anh - Việt")) {
+                                speaker.setVisible(true);
+                            }
+                        }
+                        webEngine.loadContent(contentWebView);
+                    });
+
+                    
+                }
+                webView.setVisible(true);
+
+                // Make search list disappear when clicking outside search list region
+                searchPane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
+                    if (!searchList.getBoundsInParent().contains(event.getX(), event.getY())) {
+                        searchList.setVisible(false);
+                    }
+                });
 
             } catch (SQLException | RuntimeException ex) {
                 ex.printStackTrace();
@@ -140,9 +133,14 @@ public class DictionaryController implements Initializable {
         }
     }
 
+    public void pronounce() {
+        Sound.TextToSpeech.TextSpeech(word);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dictChoiceBox.getItems().addAll(dicts);
         searchList.setVisible(false);
+        speaker.setVisible(false);
     }
 }
