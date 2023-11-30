@@ -87,26 +87,26 @@ public class MCQGamePlayController {
   }
   public void handleAnswerSelection(ActionEvent event) {
     Button selectedButton = (Button) event.getSource();
-    String choice = selectedButton.getText();
-    //boolean isCorrect = mcqGame.checkUserAnswer(choice);
+    String choice = selectedButton.getId().substring(6);
+    System.out.println(choice);
     mcqGame.setState(choice);
     //set mạng
-//    if (!isCorrect) {
-//      remainingLives--;
-//      switch (remainingLives) {
-//        case 2:
-//          life3.isVisible(false);
-//          break;
-//        case 1:
-//          life2.isVisible(false);
-//          break;
-//        case 0:
-//          life1.isVisible(false);
-//          break;
-//        default:
-//          break;
-//      }
-//    }
+  //  if (!isCorrect) {
+  //    remainingLives--;
+  //    switch (remainingLives) {
+  //      case 2:
+  //        life3.isVisible(false);
+  //        break;
+  //      case 1:
+  //        life2.isVisible(false);
+  //        break;
+  //      case 0:
+  //        life1.isVisible(false);
+  //        break;
+  //      default:
+  //        break;
+  //    }
+  //  }
     loadQuestion();
     updateUI();
   }
