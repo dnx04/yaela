@@ -3,6 +3,10 @@ package Sound;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 import javax.print.DocFlavor;
 import java.util.Scanner;
 
@@ -21,6 +25,28 @@ public class TextToSpeech {
 
         if(voice != null) {
             voice.allocate();
+
+            Properties properties = new Properties();
+            FileInputStream fileInputStream = null;
+
+            final String CONFIG_FILE_PATH =  (System.getProperty("user.dir") + "/src/main/java/GUIVersion/resources/config.properties");
+            try {
+                fileInputStream = new FileInputStream(CONFIG_FILE_PATH);
+                properties.load(fileInputStream);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            float voiceRate = Float.parseFloat(properties.getProperty("voiceRate"));
+            float voicePitch = Float.parseFloat(properties.getProperty("voicePitch"));
+            float voiceVolume = Float.parseFloat(properties.getProperty("voiceVolume"));
+
+
+            voice.setRate(voiceRate);
+            voice.setPitch(voicePitch);
+            voice.setVolume(voiceVolume);
+
             System.out.println("Voice Rate: " + voice.getRate());
             System.out.println("Voice Pitch: " + voice.getPitch());
             System.out.println("Voice Volume: " + voice.getVolume());
