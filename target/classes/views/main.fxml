@@ -10,6 +10,11 @@
         <fx:include source="dictionary.fxml" />
       </content>
     </Tab>
+    <Tab text="Favorites">
+      <content>
+       <fx:include source="favorites.fxml" />
+      </content>
+    </Tab>
     <Tab text="Translator">
       <content>
        <fx:include source="translator.fxml" />

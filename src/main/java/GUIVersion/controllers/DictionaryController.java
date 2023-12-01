@@ -3,6 +3,7 @@ package GUIVersion.controllers;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,10 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.util.Duration;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -23,6 +27,7 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import Database.QueryEngine;
@@ -40,7 +45,7 @@ public class DictionaryController implements Initializable {
 
     @FXML
     private ChoiceBox<String> dictChoiceBox;
-    private final String[] dicts = {"Việt - Anh", "Anh - Việt"};
+    private final String[] dicts = {"Anh - Việt", "Việt - Anh"};
 
     @FXML
     private ListView<String> searchList;
@@ -48,10 +53,20 @@ public class DictionaryController implements Initializable {
     @FXML
     private WebView webView;
     private static String contentWebView = "";
+    private static boolean isFav = false;
     private static String word = "";
     
     @FXML
     private Button speaker;
+
+    @FXML
+    private Tooltip pronounceTooltip;
+
+    @FXML
+    private ImageView notfav;
+
+    @FXML
+    private ImageView favorite;
 
     public String getDict(String choice) {
         switch (choice) {
@@ -86,10 +101,10 @@ public class DictionaryController implements Initializable {
                     + "' WHERE word LIKE '" + inputText + "%' LIMIT " + WORD_SEARCH_LIMIT;
                 ResultSet rs = queryEngine.makeQuery(query);
                 while (rs.next()) {
-                    String word = rs.getString(2);
-                    String def = rs.getString(3);
-                    listWord.add(word);
-                    listDefinition.add(def);
+                    String resultWord = rs.getString(2);
+                    String resultDef = rs.getString(3);
+                    listWord.add(resultWord);
+                    listDefinition.add(resultDef);
                 }
                 if (listWord.size() == 0) {
                     listWord.add(NO_WORD_NOTI);
@@ -102,23 +117,33 @@ public class DictionaryController implements Initializable {
                 if (listWord.size() != 0 && !(listWord.get(0).equals(NO_WORD_NOTI))) {
 
                     // Add listener when chosen for each item in list
-                    searchList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                        if (newValue != null && newValue != NO_WORD_NOTI) {
-                            int selectedIndex = searchList.getSelectionModel().getSelectedIndex();
-                            contentWebView = "<html><head><style>body {font-family: \"Calibri\", \"Helvetica\", sans-serif;}</style></head><body>" 
-                                + listDefinition.get(selectedIndex) + "</body></html>";
-                            word = listWord.get(selectedIndex);
-                            searchList.setVisible(false);
-                            if (dictChoice == getDict("Anh - Việt")) {
-                                speaker.setVisible(true);
+                    searchList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String> ()
+                    {
+                        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                            if (newValue != null && newValue != NO_WORD_NOTI) {
+                                int selectedIndex = searchList.getSelectionModel().getSelectedIndex();
+                                contentWebView = "<html><head><style>body {font-family: \"Calibri\", \"Helvetica\", sans-serif;}</style></head><body>" 
+                                    + listDefinition.get(selectedIndex) + "</body></html>";
+                                word = listWord.get(selectedIndex);
+                                System.out.println(word);
+                                searchList.setVisible(false);
+                                
+                                if (dictChoice.equals(getDict("Anh - Việt"))) {
+                                    speaker.setVisible(true);
+                                }
                             }
+                            webEngine.loadContent(contentWebView);
+                            notfav.setVisible(true);
+                            
+                            favorite.setVisible(isFav);
+                            searchList.getSelectionModel().selectedItemProperty().removeListener(this);
                         }
-                        webEngine.loadContent(contentWebView);
                     });
-
+                    
                     
                 }
                 webView.setVisible(true);
+                
 
                 // Make search list disappear when clicking outside search list region
                 searchPane.addEventFilter(MouseEvent.MOUSE_CLICKED, event -> {
@@ -137,10 +162,25 @@ public class DictionaryController implements Initializable {
         Sound.TextToSpeech.TextSpeech(word);
     }
 
+    public void addToFavorites() {
+        favorite.setVisible(true);
+        isFav = true;
+    }
+
+    public void removeToFavorites() {
+        favorite.setVisible(false);
+        isFav = false;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dictChoiceBox.getItems().addAll(dicts);
+        dictChoiceBox.setValue(dicts[0]);
         searchList.setVisible(false);
         speaker.setVisible(false);
+        favorite.setVisible(false);
+        notfav.setVisible(false);
+        pronounceTooltip.setShowDelay(Duration.millis(250));
+        pronounceTooltip.setHideDelay(Duration.millis(0));
     }
 }
