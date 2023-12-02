@@ -8,13 +8,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MCQGamePlayController implements Initializable {
@@ -67,8 +70,8 @@ public class MCQGamePlayController implements Initializable {
   }
 
   public void loadQuestion() {
+    String s = Integer.toString(mcqGame.getScore());
     if (!mcqGame.isGameEnded()) {
-      String s = Integer.toString(mcqGame.getScore());
       numberQuestion.setText(s);
       scoreLabel.setText(s);
 
@@ -84,20 +87,17 @@ public class MCQGamePlayController implements Initializable {
       buttonC.setText(choiceC);
       buttonD.setText(choiceD);
     } else {
-      String s = Integer.toString(mcqGame.getScore());
-      scoreLabel.setText(s);
+      //scoreLabel.setText(s);
+      GameOverAlert();
     }
   }
   public void updateUI() {
-
-  }
-  public void handleAnswerSelection(ActionEvent event) {
-    Button selectedButton = (Button) event.getSource();
-    String choice = selectedButton.getId().substring(6);
-    mcqGame.setState(choice);
-
     int errorCount = mcqGame.getErrorCount();
-    System.out.println(errorCount);
+    if(errorCount == 0){
+      life1.setVisible(true);
+      life2.setVisible(true);
+      life3.setVisible(true);
+    }
     if (errorCount >= 1) {
       life3.setVisible(false);
     }
@@ -107,8 +107,40 @@ public class MCQGamePlayController implements Initializable {
     if (errorCount >= 3) {
       life1.setVisible(false);
     }
-
-    loadQuestion();
+  }
+  public void handleAnswerSelection(ActionEvent event) {
+    Button selectedButton = (Button) event.getSource();
+    String choice = selectedButton.getId().substring(6);
+    mcqGame.setState(choice);
     updateUI();
+    loadQuestion();
+  }
+  public void GameOverAlert(){
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Game Over");
+    alert.setHeaderText("Điểm số của bạn là: " +mcqGame.getScore());
+    alert.setContentText("Bấm Ok để chơi lại!");
+
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.isPresent() && result.get() == ButtonType.OK) {
+      resetGame();
+    } else {
+      try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mcqGame/mcqGameMenu.fxml"));
+        Parent root = loader.load();
+        Scene menuScene = new Scene(root);
+
+        Stage currentStage = (Stage) quitButton.getScene().getWindow(); // Lấy Stage hiện tại từ bất kỳ nút nào trong Scene
+        currentStage.setScene(menuScene);
+        currentStage.show();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+  public void resetGame(){
+    mcqGame.init();
+    updateUI();
+    loadQuestion();
   }
 }

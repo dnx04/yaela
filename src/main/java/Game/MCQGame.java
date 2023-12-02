@@ -10,8 +10,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import com.google.common.collect.SortedMultiset;
-
 public class MCQGame extends Game {
     private List<String> words;
     private String currentQuestion;
@@ -126,6 +124,7 @@ public class MCQGame extends Game {
         initializeWordsFromDatabase();
         errorCount = 0;
         gameEnded = false;
+        score = 0;
         selectNewQuestion();
     }
 
