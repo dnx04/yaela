@@ -141,6 +141,6 @@ public class DictionaryController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dictChoiceBox.getItems().addAll(dicts);
         searchList.setVisible(false);
-        speaker.setVisible(false);
+        //speaker.setVisible(false);
     }
 }
