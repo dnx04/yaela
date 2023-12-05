@@ -6,8 +6,6 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.web.WebView?>
 
@@ -18,20 +16,14 @@
       <ChoiceBox fx:id="dictChoiceBox" layoutX="64.0" layoutY="34.0" prefHeight="30.0" prefWidth="155.0" />
       <WebView fx:id="webView" layoutX="34.0" layoutY="114.0" prefHeight="514.0" prefWidth="879.0" />
       <ListView fx:id="searchList" layoutX="244.0" layoutY="70.0" prefHeight="293.0" prefWidth="454.0" />
-      <ImageView fx:id="notfav" fitHeight="49.0" fitWidth="46.0" layoutX="855.0" layoutY="119.0" onMouseClicked="#addToFavorites" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/not-favorite.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="favorite" fitHeight="56.0" fitWidth="46.0" layoutX="855.0" layoutY="119.0" onMouseClicked="#removeToFavorites" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/favorite.png" />
-         </image>
-      </ImageView>
       <Button fx:id="speaker" layoutX="800.0" layoutY="122.0" mnemonicParsing="false" onAction="#pronounce" prefHeight="40.0" prefWidth="40.0" stylesheets="@../styles/dictionary.css">
          <tooltip>
             <Tooltip fx:id="pronounceTooltip" text="Pronounce" textAlignment="CENTER" />
          </tooltip>
       </Button>
+      <Button fx:id="addToFav" layoutX="853.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleAddToFavorite" prefHeight="40.0" prefWidth="40.0" stylesheets="@../styles/dictionary.css">
+         <tooltip>
+            <Tooltip fx:id="favoriteTooltip" text="Add to favorites" textAlignment="CENTER" />
+         </tooltip></Button>
   </children>
 </AnchorPane>

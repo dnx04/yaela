@@ -27,11 +27,4 @@ public class QueryEngine {
         }
         return rs;
     }
-
-    public static void main(String[] args) {
-        QueryEngine queryEngine = new QueryEngine("avdict.db");
-        String q = "CREATE INDEX idx ON av (word)";
-        ResultSet rs = queryEngine.makeQuery(q);
-        System.out.println("Successful!");
-    }
 }
