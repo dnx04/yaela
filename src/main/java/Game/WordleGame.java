@@ -4,9 +4,6 @@ import Database.QueryEngine;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import javax.management.Query;
-import java.io.File;
-import java.io.RandomAccessFile;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -14,6 +11,7 @@ public class WordleGame extends Game {
     protected enum TileState {BLANK, NOT_CONTAIN, WRONG_POSITION, CORRECT};
     protected enum GameState {IN_PROGRESS, LOSE, WIN}
     private char[][] word;
+    private boolean valid;
     private String pick;
     private Boolean[] exists;
     private TileState[][] ts;
@@ -22,11 +20,16 @@ public class WordleGame extends Game {
     private int cur;
     private GameState gs;
     private final QueryEngine qe = new QueryEngine("./wordlelist.db");
-    private int score;
 
     WordleGame() throws SQLException {
         score = 0;
+        init();
+    }
+
+    @Override
+    public void init() throws SQLException {
         word = new char[6][5];
+        valid = true;
         keys = new TileState[26];
         ts = new TileState[6][5];
         exists = new Boolean[26];
@@ -50,11 +53,17 @@ public class WordleGame extends Game {
             }
         }
     }
-    public void setState(KeyEvent ke){
+
+    public void setState(KeyEvent ke) throws SQLException {
         if(ke.getCode() == KeyCode.ENTER){
             if(cur == 5){
-                cur = 0;
                 String now = new String(word[turn]).toLowerCase();
+                ResultSet rs = qe.makeQuery(String.format("SELECT * from av WHERE word = %s", now));
+                if(!rs.next()){
+                    valid = false;
+                    return;
+                }
+                valid = true;
                 // check valid, do later
                 boolean win = true;
                 for (int i = 0; i < 5; ++i){
@@ -128,31 +137,16 @@ public class WordleGame extends Game {
         return score;
     }
 
+    public boolean isValid() {
+        return valid;
+    }
+
     public void replay() throws SQLException {
-        if (gs == GameState.LOSE) score = 0;
-        word = new char[6][5];
-        keys = new TileState[26];
-        ts = new TileState[6][5];
-        exists = new Boolean[26];
-        turn = 0;
-        cur = 0;
-        gs = GameState.IN_PROGRESS;
-        ResultSet rs = qe.makeQuery("SELECT * FROM wordlist ORDER BY RANDOM() LIMIT 1");
-        pick = rs.getString(1);
-        for(int i = 0; i < 26; ++i){
-            exists[i] = false;
+        if (gs == GameState.LOSE) {
+            high_score.add(score);
+            score = 0;
         }
-        for(int i = 0; i < 5; ++i){
-            exists[pick.charAt(i) - 'a'] = true;
-        }
-        for(int i = 0; i < 26; ++i){
-            keys[i] = TileState.BLANK;
-        }
-        for(int i = 0; i < 6; ++i){
-            for(int j = 0; j < 5; ++j){
-                ts[i][j] = TileState.BLANK;
-            }
-        }
+        init();
     }
 
     public static void main(String[] args) throws SQLException {

@@ -14,10 +14,10 @@ public class TextToSpeech {
         Voice voice = VoiceManager.getInstance().getVoice("kevin16");
         //Voice voice = VoiceManager.getInstance().getVoice("alan");
         //kevin or alan
-        Voice []voiceList = VoiceManager.getInstance().getVoices();
-        for(int i = 0; i < voiceList.length; ++i) {
-            System.out.println("# Voice: + " + voiceList[i].getName());
-        }
+        // Voice []voiceList = VoiceManager.getInstance().getVoices();
+        // for(int i = 0; i < voiceList.length; ++i) {
+        //     System.out.println("# Voice: + " + voiceList[i].getName());
+        // }
 
         if(voice != null) {
             voice.allocate();
