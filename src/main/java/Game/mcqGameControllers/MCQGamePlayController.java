@@ -130,7 +130,7 @@ public class MCQGamePlayController implements Initializable {
         Parent root = loader.load();
         Scene menuScene = new Scene(root);
 
-        Stage currentStage = (Stage) quitButton.getScene().getWindow(); // Lấy Stage hiện tại từ bất kỳ nút nào trong Scene
+        Stage currentStage = (Stage) quitButton.getScene().getWindow();
         currentStage.setScene(menuScene);
         currentStage.show();
       } catch (IOException e) {
