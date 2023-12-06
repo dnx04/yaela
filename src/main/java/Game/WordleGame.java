@@ -21,10 +21,8 @@ public class WordleGame extends Game {
     private int cur;
     private GameState gs;
     private final QueryEngine qe = new QueryEngine("./wordlelist.db");
-    private ArrayList<Integer> highscore;
 
     public WordleGame() throws SQLException {
-        highscore = new ArrayList<>();
         score = 0;
         init();
     }
@@ -95,6 +93,7 @@ public class WordleGame extends Game {
 
                 if(turn == 6){
                     gs = GameState.LOSE;
+                    highscore.add(score);
                     return;
                 }
             }
