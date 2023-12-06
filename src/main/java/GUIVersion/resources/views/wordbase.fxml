@@ -17,7 +17,7 @@
             <children>
                 <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="520.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <Label fx:id="deleteLabel" layoutX="400.0" layoutY="37.0" text="Xóa từ" textFill="#1d1de1">
+                        <Label fx:id="deleteLabel" layoutX="400.0" layoutY="37.0" text="Xóa từ" textFill="#007fff">
                             <font>
                                 <Font name="System Bold" size="31.0" />
                             </font>
@@ -27,14 +27,14 @@
                 </Pane>
                 <AnchorPane fx:id="searchPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                     <children>
-                        <Pane layoutX="141.0" layoutY="26.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ececec;" AnchorPane.bottomAnchor="380.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
+                        <Pane layoutX="141.0" layoutY="26.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="380.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
                             <children>
-                                <Label fx:id="deleteLabel1" layoutX="50.0" layoutY="25.0" prefHeight="50.0" text="Từ muốn xóa" textFill="#1d0bde">
+                                <Label fx:id="deleteLabel1" layoutX="50.0" layoutY="25.0" prefHeight="50.0" text="Từ muốn xóa" textFill="#007fff">
                                     <font>
                                         <Font name="System Bold Italic" size="24.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="deleteWord" layoutX="240.0" layoutY="25.0" onKeyReleased="#search" prefHeight="50.0" prefWidth="550.0" promptText="Nhập từ muốn xóa" style="-fx-border-color: #0b9e03; -fx-border-width: 2; -fx-border-radius: 2%;">
+                                <TextField fx:id="deleteWord" layoutX="240.0" layoutY="25.0" onKeyReleased="#search" prefHeight="50.0" prefWidth="550.0" promptText="Nhập từ muốn xóa" style="-fx-border-color: #0b9e03; -fx-border-width: 2; -fx-border-radius: 50; -fx-background-radius: 50;">
                                     <font>
                                         <Font name="System Italic" size="16.0" />
                                     </font>
@@ -48,7 +48,7 @@
                             </font>
                         </Button>
                         <WebView fx:id="webView" layoutX="120.0" layoutY="160.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="150.0" />
-                        <ListView fx:id="searchListDelete" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="290.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="115.0" />
+                        <ListView fx:id="searchListDelete" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="290.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="115.0" />
                     </children>
                 </AnchorPane>
             </children>
@@ -57,7 +57,7 @@
             <children>
                 <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="520.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <Label fx:id="insertLabel" layoutX="334.0" layoutY="37.0" text="Thêm từ vựng mới" textFill="#1d1de1">
+                        <Label fx:id="insertLabel" layoutX="334.0" layoutY="37.0" text="Thêm từ vựng mới" textFill="#007fff">
                             <font>
                                 <Font name="System Bold" size="31.0" />
                             </font>
@@ -67,19 +67,19 @@
                 </Pane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                     <children>
-                        <Pane layoutX="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ececec;" AnchorPane.bottomAnchor="380.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+                        <Pane layoutX="50.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="380.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <Label layoutX="50.0" layoutY="25.0" prefHeight="50.0" text="Thêm từ" textFill="#1d0bde">
+                                <Label layoutX="50.0" layoutY="25.0" prefHeight="50.0" text="Thêm từ" textFill="#007fff">
                                     <font>
                                         <Font name="System Bold Italic" size="24.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="newWord" layoutX="160.0" layoutY="25.0" prefHeight="50.0" prefWidth="630.0" promptText="Nhập từ mới" style="-fx-border-color: #0b9e03; -fx-border-width: 2; -fx-border-radius: 4%;">
+                                <TextField fx:id="newWord" layoutX="160.0" layoutY="25.0" prefHeight="50.0" prefWidth="630.0" promptText="Nhập từ mới" style="-fx-border-color: #0b9e03; -fx-border-width: 2; -fx-border-radius: 4%; -fx-background-radius: 50;">
                                     <font>
                                         <Font name="System Italic" size="16.0" />
                                     </font>
                                 </TextField>
-                                <Label layoutX="100.0" layoutY="100.0" prefHeight="35.0" text="IPA">
+                                <Label layoutX="100.0" layoutY="100.0" prefHeight="35.0" text="IPA" textFill="#007fff">
                                     <font>
                                         <Font name="System Bold Italic" size="18.0" />
                                     </font>
@@ -111,17 +111,17 @@
                                 </TextArea>
                                 <Label layoutX="150.0" layoutY="25.0" prefHeight="35.0" text="Loại từ" AnchorPane.leftAnchor="50.0">
                                     <font>
-                                        <Font name="System Bold" size="16.0" />
+                                        <Font size="16.0" />
                                     </font>
                                 </Label>
                                 <Label layoutX="100.0" layoutY="109.0" text="Explain" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="75.0">
                                     <font>
-                                        <Font name="System Bold" size="16.0" />
+                                        <Font size="16.0" />
                                     </font>
                                 </Label>
                                 <Label layoutX="57.0" layoutY="142.0" text="Example" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="175.0">
                                     <font>
-                                        <Font name="System Bold" size="16.0" />
+                                        <Font size="16.0" />
                                     </font>
                                 </Label>
                             </children></AnchorPane>
