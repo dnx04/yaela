@@ -1,4 +1,4 @@
-package Game;
+package Game.wordleGameControllers;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;

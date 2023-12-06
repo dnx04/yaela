@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="628.5" prefWidth="940.0" stylesheets="@../styles/games.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIVersion.controllers.GamesController">
   <children>
     <Button fx:id="wordleButton" layoutX="198.0" layoutY="119.0" mnemonicParsing="false" onAction="#handleWordleButton" prefHeight="150.0" prefWidth="150.0" style="-fx-background-radius: 20;" />
-    <Button fx:id="mcqButton" layoutX="198.0" layoutY="353.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" />
+    <Button fx:id="mcqButton" layoutX="198.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleMCQButton" prefHeight="150.0" prefWidth="150.0" />
     <Text layoutX="436.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WORDLE">
       <font>
         <Font size="33.0" />

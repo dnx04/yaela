@@ -1,4 +1,4 @@
-package Game;
+package Game.wordleGameControllers;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 
 public class WordleGameMenuController {
@@ -19,17 +20,20 @@ public class WordleGameMenuController {
   @FXML
   Button highScoreButton;
 
+  TabPane tabPane;
   Stage stage;
-
   Scene scene;
 
   public void changeSceneToGameCenter(ActionEvent e) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("/views/main.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
+    Parent root = loader.load();
     stage = (Stage)((Node)e.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
 
-
+    tabPane = (TabPane) loader.getNamespace().get("tabPane");
+    int tabIndex = 2;
+    tabPane.getSelectionModel().select(tabIndex);
 
     stage.show();
   }
