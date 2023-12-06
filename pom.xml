@@ -80,6 +80,11 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/cmu_time_awb.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.5.2</version>
+        </dependency>
     </dependencies>
 
     <build>
