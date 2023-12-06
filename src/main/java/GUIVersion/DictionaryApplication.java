@@ -1,13 +1,9 @@
 package GUIVersion;
 
-
-
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import com.opencsv.CSVParser;
@@ -16,7 +12,6 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVWriter;
 
-import CommandVersion.Word;
 import atlantafx.base.theme.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +26,7 @@ public class DictionaryApplication extends Application {
 
     private String enViPath = System.getProperty("user.dir") + "/src/main/java/GUIVersion/resources/data/favoriteEnVi.csv";
     private String viEnPath = System.getProperty("user.dir") + "/src/main/java/GUIVersion/resources/data/favoriteViEn.csv";
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -55,10 +51,6 @@ public class DictionaryApplication extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        // favoriteListEnVi.sort(Comparator.comparing(strings -> strings[0]));
-        // favoriteListViEn.sort(Comparator.comparing(strings -> strings[0]));
 
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
         Parent root = FXMLLoader.load(getClass().getResource("/views/main.fxml"));

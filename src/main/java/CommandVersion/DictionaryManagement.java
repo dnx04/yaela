@@ -57,7 +57,7 @@ public class DictionaryManagement extends Dictionary{
     public static void insertFromFile() {
 
         try{
-            BufferedReader r = new BufferedReader(new FileReader("./yaela/src/main/java/CommandVersion/dictionaries.txt"));
+            BufferedReader r = new BufferedReader(new FileReader(System.getProperty("user.dir") + "./src/main/java/CommandVersion/dictionaries.txt"));
             String line;
             while ((line = r.readLine()) != null) {
                 String[] parts = line.split("\t", 2);
@@ -169,7 +169,7 @@ public class DictionaryManagement extends Dictionary{
     }
 
     public static void dictionaryExportToFile() {
-        File f = new File("./yaela/src/main/java/CommandVersion/dictionaries.txt");
+        File f = new File(System.getProperty("user.dir") + "./src/main/java/CommandVersion/dictionaries.txt");
 
         try {
             FileOutputStream output = new FileOutputStream(f);

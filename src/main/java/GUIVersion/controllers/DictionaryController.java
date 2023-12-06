@@ -211,7 +211,7 @@ public class DictionaryController implements Initializable {
             if (favWord[0] == "" || favWord[0] == null || favWord[1] == "" || favWord[1] == null) {
                 alert.showAlertWarning("Warning", "No fields are allowed to be left blank!");
                 event.consume();
-            } else if (findInsertIndex(favWord[0], listFav) == 0) {
+            } else if (findInsertIndex(favWord[0], listFav) == -1) {
                 alert.showAlertWarning("Warning", "This word has appeared in favorite list!");
                 event.consume();
             }
@@ -221,7 +221,7 @@ public class DictionaryController implements Initializable {
             if (dialogButton == ButtonType.OK) {
                 String[] favWord = {wordField.getText(), noteField.getText()};
                 int insertIndex = findInsertIndex(favWord[0], listFav);
-                if (favWord[0] != "" && favWord[0] != null && favWord[1] != "" && favWord[1] != null && insertIndex != 0) {
+                if (favWord[0] != "" && favWord[0] != null && favWord[1] != "" && favWord[1] != null && insertIndex != -1) {
                     // if (dictionary.equals(getDict("Anh - Việt"))) {
                     //     DictionaryApplication.favoriteListEnVi.add(favWord);
                     // } else {
