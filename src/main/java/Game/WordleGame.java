@@ -1,6 +1,7 @@
 package Game;
 
 import Database.QueryEngine;
+import java.util.ArrayList;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -8,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class WordleGame extends Game {
-    protected enum TileState {BLANK, NOT_CONTAIN, WRONG_POSITION, CORRECT};
-    protected enum GameState {IN_PROGRESS, LOSE, WIN}
+    public enum TileState {BLANK, NOT_CONTAIN, WRONG_POSITION, CORRECT};
+    public enum GameState {IN_PROGRESS, LOSE, WIN}
     private char[][] word;
     private boolean valid;
     private String pick;
@@ -20,8 +21,10 @@ public class WordleGame extends Game {
     private int cur;
     private GameState gs;
     private final QueryEngine qe = new QueryEngine("./wordlelist.db");
+    private ArrayList<Integer> highscore;
 
-    WordleGame() throws SQLException {
+    public WordleGame() throws SQLException {
+        highscore = new ArrayList<>();
         score = 0;
         init();
     }
@@ -55,10 +58,14 @@ public class WordleGame extends Game {
     }
 
     public void setState(KeyEvent ke) throws SQLException {
+        System.out.println("turn: " + turn);
+        System.out.println("cur: " + cur);
+        System.out.println(gs);
+
         if(ke.getCode() == KeyCode.ENTER){
             if(cur == 5){
                 String now = new String(word[turn]).toLowerCase();
-                ResultSet rs = qe.makeQuery(String.format("SELECT * from av WHERE word = %s", now));
+                ResultSet rs = qe.makeQuery(String.format("SELECT * from wordlist WHERE word = '%s' ", now));
                 if(!rs.next()){
                     valid = false;
                     return;
@@ -84,6 +91,8 @@ public class WordleGame extends Game {
                     return;
                 }
                 ++turn;
+                cur = 0;
+
                 if(turn == 6){
                     gs = GameState.LOSE;
                     return;
@@ -143,7 +152,7 @@ public class WordleGame extends Game {
 
     public void replay() throws SQLException {
         if (gs == GameState.LOSE) {
-            high_score.add(score);
+            highscore.add(score);
             score = 0;
         }
         init();

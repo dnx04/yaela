@@ -1,0 +1,46 @@
+
+.guessing-letter {
+  -fx-background-color: #FBFCFF;
+  -fx-border-width: 2.5;
+  -fx-border-color: #a2a3a2;
+  -fx-border-radius: 7;
+  -fx-text-fill: #414A5E;
+}
+
+.true-letter-false-pos {
+  -fx-background-color: #f3c237;
+  -fx-text-fill: white;
+}
+
+.true-letter-true-pos {
+  -fx-background-color: #79b851;
+  -fx-text-fill: white;
+}
+
+.false-letter {
+  -fx-background-color: #a4acc4;
+  -fx-text-fill: white;
+}
+
+.blank-letter {
+  -fx-background-color: #FBFCFF;
+  -fx-border-width: 2.5;
+  -fx-border-color: #DFE1E9;
+  -fx-border-radius: 7;
+}
+
+.not-tried-letter {
+  -fx-background-color: #DCE1ED;
+  -fx-text-fill: #414A5E;
+}
+
+.hover-transition {
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-transition: -fx-scale-x 0.5s, -fx-scale-y 0.5s;
+}
+
+.hover-transition:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}

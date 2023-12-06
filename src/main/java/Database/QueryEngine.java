@@ -3,7 +3,7 @@ package Database;
 import java.sql.*;
 
 public class QueryEngine {
-    private Connection c = null;
+    public static Connection c = null;
     public QueryEngine(String database) {
         try{
             Class.forName("org.sqlite.JDBC");

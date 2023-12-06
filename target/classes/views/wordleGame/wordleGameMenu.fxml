@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.WordleGameMenuController">
+<AnchorPane prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Game.wordleGameControllers.WordleGameMenuController">
    <children>
       <Button fx:id="quitButton" layoutX="641.0" layoutY="531.0" mnemonicParsing="false" onAction="#changeSceneToGameCenter" prefHeight="43.0" prefWidth="176.0" style="-fx-background-radius: 10;" text="QUIT">
          <font>
