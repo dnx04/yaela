@@ -195,16 +195,42 @@ public class DictionaryController implements Initializable {
         wordField.setText(word);
         noteField.setText(description);
 
+        Button btOK = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+
+        ArrayList<String[]> listFav;
+        if (dictionary.equals(getDict("Anh - Việt"))) {
+            listFav = DictionaryApplication.favoriteListEnVi;
+        } else {
+            listFav = DictionaryApplication.favoriteListViEn;
+        }
+
+        Alerts alert = new Alerts();
+
+        btOK.addEventFilter(ActionEvent.ACTION, event -> {
+            String[] favWord = {wordField.getText(), noteField.getText()};
+            if (favWord[0] == "" || favWord[0] == null || favWord[1] == "" || favWord[1] == null) {
+                alert.showAlertWarning("Warning", "No fields are allowed to be left blank!");
+                event.consume();
+            } else if (findInsertIndex(favWord[0], listFav) == 0) {
+                alert.showAlertWarning("Warning", "This word has appeared in favorite list!");
+                event.consume();
+            }
+        });
+
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == ButtonType.OK) {
                 String[] favWord = {wordField.getText(), noteField.getText()};
-                if (dictionary.equals(getDict("Anh - Việt"))) {
-                    DictionaryApplication.favoriteListEnVi.add(favWord);
-                } else {
-                    DictionaryApplication.favoriteListViEn.add(favWord);
+                int insertIndex = findInsertIndex(favWord[0], listFav);
+                if (favWord[0] != "" && favWord[0] != null && favWord[1] != "" && favWord[1] != null && insertIndex != 0) {
+                    // if (dictionary.equals(getDict("Anh - Việt"))) {
+                    //     DictionaryApplication.favoriteListEnVi.add(favWord);
+                    // } else {
+                    //     DictionaryApplication.favoriteListViEn.add(favWord);
+                    // }
+                    listFav.add(insertIndex, favWord);
+                    Alerts successfulAlert = new Alerts();
+                    successfulAlert.showAlertInfo("Successful", "Added to favorites successfully!");
                 }
-                Alerts successfulAlert = new Alerts();
-                successfulAlert.showAlertInfo("Successful", "Added to favorites successfully!");
             }
             return null;
         });
@@ -228,5 +254,22 @@ public class DictionaryController implements Initializable {
         pronounceTooltip.setHideDelay(Duration.millis(0));
         favoriteTooltip.setShowDelay(Duration.millis(250));
         favoriteTooltip.setHideDelay(Duration.millis(0));
+    }
+
+    private int findInsertIndex(String word, ArrayList<String[]> list) {
+        int start = 0;
+        int end = list.size() - 1;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            int cmp = (list.get(mid))[0].compareTo(word);
+            if (cmp == 0) {
+                return -1;
+            } else if (cmp < 0) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+        return end + 1;
     }
 }
