@@ -21,7 +21,6 @@ public class MCQGame extends Game {
     private static QueryEngine queryEngine = new QueryEngine("avdict.db");
 
     public MCQGame() {
-        highscore = new ArrayList<>();
         score = 0;
         init();
     }
@@ -84,6 +83,7 @@ public class MCQGame extends Game {
 
         if (errorCount >= 3) {
             gameEnded = true;
+            highscore.add(score);
         } else {
             Collections.shuffle(words);
             selectNewQuestion();
@@ -127,6 +127,7 @@ public class MCQGame extends Game {
         score = 0;
         selectNewQuestion();
     }
+
 
     @Override
     public void setState(KeyEvent ke) throws SQLException {
