@@ -62,7 +62,6 @@ public class SettingsController implements Initializable {
     String mode = button.getText();
 
     int fontSizeRate = Integer.parseInt(properties.getProperty("fontSizeRate"));
-    System.out.println(fontSizeRate);
     if (mode.equals("Increase") && fontSizeRate < 6) {
       properties.setProperty("fontSizeRate", Integer.toString(fontSizeRate + 1));
     } else if (mode.equals("Decrease") && fontSizeRate > 1) {
@@ -180,7 +179,6 @@ public class SettingsController implements Initializable {
       Label label = (Label) node;
       Font oldFont = label.getFont();
       label.setFont(new Font(fontFamily, oldFont.getSize()));
-      System.out.println(oldFont.getFamily());
     }
     if (node instanceof TextField) {
       TextField textField = (TextField) node;
@@ -248,6 +246,7 @@ public class SettingsController implements Initializable {
   }
 
   public void setDarkMode(ActionEvent a) {
+
     Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
 
     Button button = (Button) a.getSource();
@@ -258,14 +257,12 @@ public class SettingsController implements Initializable {
       for (Node node : anchorPane.getChildren()) {
         if (node instanceof WebView) {
           WebView webView = (WebView) node;
-          String htmlContent = DictionaryController.htmlContent;
-          System.out.println(htmlContent);
-          htmlContent = changeHtmlBackground(htmlContent, "#0c1118");
-          htmlContent = changeHtmlFontColor(htmlContent, "white");
-          System.out.println(htmlContent);
+
+          DictionaryController.htmlContent = changeHtmlBackground(DictionaryController.htmlContent, "#0c1118");
+          DictionaryController.htmlContent = changeHtmlFontColor(DictionaryController.htmlContent, "white");
           DictionaryController.contentWebView = changeHtmlFontColor(DictionaryController.contentWebView, "white");
           DictionaryController.contentWebView = changeHtmlBackground(DictionaryController.contentWebView, "#0c1118");
-          webView.getEngine().loadContent(htmlContent);
+          webView.getEngine().loadContent(DictionaryController.htmlContent);
         }
       }
     }
@@ -273,6 +270,7 @@ public class SettingsController implements Initializable {
 
 
   public void setLightMode(ActionEvent a) {
+
     Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
 
     Button button = (Button) a.getSource();
@@ -283,14 +281,12 @@ public class SettingsController implements Initializable {
       for (Node node : anchorPane.getChildren()) {
         if (node instanceof WebView) {
           WebView webView = (WebView) node;
-          String htmlContent = DictionaryController.htmlContent;
-          System.out.println(htmlContent);
-          htmlContent = changeHtmlBackground(htmlContent, "white");
-          htmlContent = changeHtmlFontColor(htmlContent, "black");
-          System.out.println(htmlContent);
+
+          DictionaryController.htmlContent = changeHtmlBackground(DictionaryController.htmlContent, "white");
+          DictionaryController.htmlContent = changeHtmlFontColor(DictionaryController.htmlContent, "black");
           DictionaryController.contentWebView = changeHtmlFontColor(DictionaryController.contentWebView, "black");
           DictionaryController.contentWebView = changeHtmlBackground(DictionaryController.contentWebView, "white");
-          webView.getEngine().loadContent(htmlContent);
+          webView.getEngine().loadContent(DictionaryController.htmlContent);
 
         }
       }
