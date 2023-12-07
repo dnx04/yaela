@@ -324,7 +324,7 @@ public class SettingsController implements Initializable {
       throw new RuntimeException(e);
     }
 
-    properties.setProperty("fontSize", "3");
+    properties.setProperty("fontSizeRate", "3");
 
     double voiceRate = Double.parseDouble(properties.getProperty("voiceRate"));
     double voicePitch = Double.parseDouble(properties.getProperty("voicePitch"));
