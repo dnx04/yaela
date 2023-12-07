@@ -2,6 +2,9 @@ package Game.wordleGameControllers;
 
 import Game.WordleGame;
 import Game.WordleGame.GameState;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -47,6 +50,7 @@ public class WordleGamePlayController implements Initializable {
   Scene scene;
   WordleGame gameObj;
   boolean tile5notFilled = false;
+  private File highscoreFile = new File(System.getProperty("user.dir") + "/src/main/java/GUIVersion/resources/highscore2.txt");
 
 
 
@@ -64,6 +68,9 @@ public class WordleGamePlayController implements Initializable {
     WordleGame.GameState gs = gameObj.getGs();
     if (gs == GameState.WIN) {
       winBanner.setVisible(true);
+    FileWriter fr = new FileWriter(highscoreFile, true);
+    fr.write(String.format("%d\n", gameObj.getScore()));
+    fr.close();
       if (event.getCode() == KeyCode.ENTER) {
         gameObj.replay();
         System.out.println(gameObj.getPick());

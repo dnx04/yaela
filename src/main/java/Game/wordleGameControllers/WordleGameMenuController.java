@@ -56,7 +56,7 @@ public class WordleGameMenuController {
     stage.setScene(scene);
     stage.show();*/
 
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mcqGame/wordleGameHighScore.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/wordleGame/wordleGameHighScore.fxml"));
     Parent root = loader.load();
     
     WordleGameHighScoreController controller = loader.getController();
