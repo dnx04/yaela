@@ -24,7 +24,6 @@ public class WordleGame extends Game {
     private int cur;
     private GameState gs;
     private final QueryEngine qe = new QueryEngine("./wordlelist.db");
-    private File highscoreFile = new File(System.getProperty("user.dir") + "/src/main/java/GUIVersion/resources/highscore2.txt");
 
 
 
@@ -99,7 +98,6 @@ public class WordleGame extends Game {
 
                 if(turn == 6){
                     gs = GameState.LOSE;
-                    highscore.add(score);
                     return;
                 }
             }
@@ -157,9 +155,6 @@ public class WordleGame extends Game {
 
     public void replay() throws SQLException, IOException {
         if (gs == GameState.LOSE) {
-            FileWriter fr = new FileWriter(highscoreFile, true);
-            fr.write(String.format("%d\n", score));
-            fr.close();
             score = 0;
         }
         init();
