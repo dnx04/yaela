@@ -92,6 +92,7 @@ public class MCQGame extends Game {
             FileWriter fr = new FileWriter(highscoreFile, true);
             fr.write(String.format("%d\n", score));
             fr.close();
+
         } else {
             Collections.shuffle(words);
             selectNewQuestion();

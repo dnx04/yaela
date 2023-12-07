@@ -60,7 +60,14 @@ public class DictionaryController implements Initializable {
 
     @FXML
     private WebView webView;
-    private static String contentWebView = "";
+    public static String contentWebView = "<html><head><style>"
+        + "body {"
+        + "background-color: white          ;"
+        + "font-family: System       ;"
+        + "color: #000000              ;"
+        + "}</style></head><body>";
+
+    public static String htmlContent;
     private static String word = "";
     private static String description = "";
     private static String dictionary = "";
@@ -146,19 +153,17 @@ public class DictionaryController implements Initializable {
                         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                             if (newValue != null && newValue != NO_WORD_NOTI) {
                                 int selectedIndex = searchList.getSelectionModel().getSelectedIndex();
-                                contentWebView = "<html><head><style>body {font-family: \"Calibri\", \"Helvetica\", sans-serif;}</style></head><body>" 
-                                    + listDefinition.get(selectedIndex) + "</body></html>";
+                                htmlContent = contentWebView + listDefinition.get(selectedIndex) + "</body></html>";
                                 word = listWord.get(selectedIndex);
                                 description = listDescription.get(selectedIndex);
                                 dictionary = dictChoice;
-                                System.out.println(word);
                                 searchList.setVisible(false);
                                 
                                 if (dictChoice.equals(getDict("Anh - Việt"))) {
                                     speaker.setVisible(true);
                                 }
                             }
-                            webEngine.loadContent(contentWebView);
+                            webEngine.loadContent(htmlContent);
                             addToFav.setVisible(true);
                             
                             searchList.getSelectionModel().selectedItemProperty().removeListener(this);

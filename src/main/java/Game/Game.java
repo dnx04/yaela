@@ -15,4 +15,9 @@ public abstract class Game {
     public abstract void init() throws SQLException;
 
     public abstract void setState(KeyEvent ke) throws SQLException;
+
+    public ArrayList<Integer> getHighscore() {
+        Collections.sort(highscore, Collections.reverseOrder());
+        return highscore;
+    }
 }

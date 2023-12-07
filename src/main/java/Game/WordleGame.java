@@ -27,6 +27,7 @@ public class WordleGame extends Game {
     private File highscoreFile = new File(System.getProperty("user.dir") + "/src/main/java/GUIVersion/resources/highscore2.txt");
 
 
+
     public WordleGame() throws SQLException {
         score = 0;
         init();
