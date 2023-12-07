@@ -157,7 +157,6 @@ public class DictionaryController implements Initializable {
                                 word = listWord.get(selectedIndex);
                                 description = listDescription.get(selectedIndex);
                                 dictionary = dictChoice;
-                                System.out.println(word);
                                 searchList.setVisible(false);
                                 
                                 if (dictChoice.equals(getDict("Anh - Việt"))) {

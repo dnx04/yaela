@@ -20,3 +20,12 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
+
+#modifyBtn {
+    -fx-background-image: url('../images/modify.png');
+    -fx-background-radius: 50;
+    -fx-border-radius: 20;
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
