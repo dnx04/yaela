@@ -1,5 +1,4 @@
 #flashcard {
-    -fx-background-color: rgb(244, 244, 244);
     -fx-border-color: darkgray;
     -fx-border-radius: 5;
 }
@@ -16,6 +15,15 @@
 #rightBtn {
     -fx-background-image: url('../images/right.png');
     -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#modifyBtn {
+    -fx-background-image: url('../images/modify.png');
+    -fx-background-radius: 50;
     -fx-border-radius: 20;
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
