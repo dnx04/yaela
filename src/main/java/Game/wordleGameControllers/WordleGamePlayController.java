@@ -60,7 +60,7 @@ public class WordleGamePlayController implements Initializable {
   }
 
 
-  public void handleKeyEvent(KeyEvent event) throws SQLException {
+  public void handleKeyEvent(KeyEvent event) throws SQLException, IOException {
     WordleGame.GameState gs = gameObj.getGs();
     if (gs == GameState.WIN) {
       winBanner.setVisible(true);

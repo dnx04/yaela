@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -21,10 +24,10 @@ public class WordleGame extends Game {
     private int cur;
     private GameState gs;
     private final QueryEngine qe = new QueryEngine("./wordlelist.db");
-    private ArrayList<Integer> highscore;
+    private File highscoreFile = new File(System.getProperty("user.dir") + "/src/main/java/GUIVersion/resources/highscore2.txt");
+
 
     public WordleGame() throws SQLException {
-        highscore = new ArrayList<>();
         score = 0;
         init();
     }
@@ -95,6 +98,7 @@ public class WordleGame extends Game {
 
                 if(turn == 6){
                     gs = GameState.LOSE;
+                    highscore.add(score);
                     return;
                 }
             }
@@ -150,9 +154,11 @@ public class WordleGame extends Game {
         return valid;
     }
 
-    public void replay() throws SQLException {
+    public void replay() throws SQLException, IOException {
         if (gs == GameState.LOSE) {
-            highscore.add(score);
+            FileWriter fr = new FileWriter(highscoreFile, true);
+            fr.write(String.format("%d\n", score));
+            fr.close();
             score = 0;
         }
         init();

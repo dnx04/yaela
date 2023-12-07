@@ -16,7 +16,7 @@
                 <Image url="@../../images/mcqGameBackGround.png" />
             </image>
         </ImageView>
-        <Button layoutX="753.0" layoutY="559.0" mnemonicParsing="false" text="Back">
+        <Button fx:id="backButton" onAction="#changeSceneToMenu" layoutX="753.0" layoutY="559.0" mnemonicParsing="false" text="Back">
             <font>
                 <Font size="18.0" />
             </font>
@@ -26,20 +26,20 @@
                 <Font size="36.0" />
             </font>
         </Label>
-        <Label layoutX="367.0" layoutY="256.0" prefHeight="43.0" prefWidth="145.0" text="1st: 500" textFill="WHITE">
-            <font>
-                <Font name="Palatino Bold" size="29.0" />
-            </font>
+        <Label fx:id="firstHighScoreLabel" layoutX="367.0" layoutY="256.0" prefHeight="43.0" prefWidth="145.0" text="1st: " textFill="WHITE">
+        <font>
+            <Font name="Palatino Bold" size="29.0" />
+        </font>
         </Label>
-        <Label layoutX="362.0" layoutY="326.0" prefHeight="43.0" prefWidth="145.0" text="2nd: 500" textFill="WHITE">
-            <font>
-                <Font name="Palatino Bold" size="29.0" />
-            </font>
+        <Label fx:id="secondHighScoreLabel" layoutX="362.0" layoutY="326.0" prefHeight="43.0" prefWidth="145.0" text="2nd: " textFill="WHITE">
+        <font>
+            <Font name="Palatino Bold" size="29.0" />
+        </font>
         </Label>
-        <Label layoutX="363.0" layoutY="392.0" prefHeight="43.0" prefWidth="145.0" text="3rd: 500" textFill="WHITE">
-            <font>
-                <Font name="Palatino Bold" size="29.0" />
-            </font>
+        <Label fx:id="thirdHighScoreLabel" layoutX="363.0" layoutY="392.0" prefHeight="43.0" prefWidth="145.0" text="3rd: " textFill="WHITE">
+        <font>
+            <Font name="Palatino Bold" size="29.0" />
+        </font>
         </Label>
     </children>
 </AnchorPane>

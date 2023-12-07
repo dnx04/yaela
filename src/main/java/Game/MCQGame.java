@@ -10,6 +10,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class MCQGame extends Game {
     private List<String> words;
     private String currentQuestion;
@@ -17,12 +21,13 @@ public class MCQGame extends Game {
     private int score;
     private int errorCount;
     private boolean gameEnded;
+    private File highscoreFile = new File(System.getProperty("user.dir") + "/src/main/java/GUIVersion/resources/highscore.txt");
 
     private static QueryEngine queryEngine = new QueryEngine("avdict.db");
 
     public MCQGame() {
-        highscore = new ArrayList<>();
         score = 0;
+        words = new ArrayList<>();
         init();
     }
 
@@ -51,7 +56,7 @@ public class MCQGame extends Game {
         return null;
     }
 
-    public void setState(String choice) {
+    public void setState(String choice) throws IOException {
         switch (choice) {
             case "A":
                 checkUserAnswer(0);
@@ -71,7 +76,7 @@ public class MCQGame extends Game {
         selectNewQuestion();
     }
 
-    private void checkUserAnswer(int selectedIndex) {
+    private void checkUserAnswer(int selectedIndex) throws IOException {
         if (selectedIndex >= 0 && selectedIndex < 4) {
             String selectedAnswer = getChoices().get(selectedIndex);
             if (selectedAnswer.equalsIgnoreCase(correctAnswer)) {
@@ -84,6 +89,9 @@ public class MCQGame extends Game {
 
         if (errorCount >= 3) {
             gameEnded = true;
+            FileWriter fr = new FileWriter(highscoreFile, true);
+            fr.write(String.format("%d\n", score));
+            fr.close();
         } else {
             Collections.shuffle(words);
             selectNewQuestion();
@@ -127,6 +135,7 @@ public class MCQGame extends Game {
         score = 0;
         selectNewQuestion();
     }
+
 
     @Override
     public void setState(KeyEvent ke) throws SQLException {

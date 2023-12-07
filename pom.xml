@@ -84,6 +84,8 @@
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
             <version>5.5.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/opencsv-4.1.jar</systemPath>
         </dependency>
     </dependencies>
 

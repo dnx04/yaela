@@ -1,6 +1,9 @@
 package Game.mcqGameControllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import Game.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +25,7 @@ public class MCQGameMenuController {
   TabPane tabPane;
   Stage stage;
   Scene scene;
-
+  
   public void changeSceneToGameCenter(ActionEvent e) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
     Parent root = loader.load();
@@ -46,10 +49,22 @@ public class MCQGameMenuController {
   }
 
   public void changeSceneToHighScore(ActionEvent e) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("/views/mcqGame/mcqGameHighScore.fxml"));
+    /*Parent root = FXMLLoader.load(getClass().getResource("/views/mcqGame/mcqGameHighScore.fxml"));
+    stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();*/
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mcqGame/mcqGameHighScore.fxml"));
+    Parent root = loader.load();
+    
+    MCQGameHighScoreController controller = loader.getController();
+    controller.getHighscore();
+
     stage = (Stage)((Node)e.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
+    
   }
+
 }

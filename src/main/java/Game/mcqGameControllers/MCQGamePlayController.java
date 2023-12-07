@@ -108,7 +108,7 @@ public class MCQGamePlayController implements Initializable {
       life1.setVisible(false);
     }
   }
-  public void handleAnswerSelection(ActionEvent event) {
+  public void handleAnswerSelection(ActionEvent event) throws IOException {
     Button selectedButton = (Button) event.getSource();
     String choice = selectedButton.getId().substring(6);
     mcqGame.setState(choice);

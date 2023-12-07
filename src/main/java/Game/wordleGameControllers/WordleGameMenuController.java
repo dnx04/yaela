@@ -1,6 +1,8 @@
 package Game.wordleGameControllers;
 
 import java.io.IOException;
+
+import Game.mcqGameControllers.MCQGameHighScoreController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,7 @@ public class WordleGameMenuController {
   Button playButton;
   @FXML
   Button highScoreButton;
+  
 
   TabPane tabPane;
   Stage stage;
@@ -47,7 +50,18 @@ public class WordleGameMenuController {
   }
 
   public void changeSceneToHighScore(ActionEvent e) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("/views/wordleGame/wordleGameHighScore.fxml"));
+    /*Parent root = FXMLLoader.load(getClass().getResource("/views/wordleGame/wordleGameHighScore.fxml"));
+    stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();*/
+
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/mcqGame/wordleGameHighScore.fxml"));
+    Parent root = loader.load();
+    
+    WordleGameHighScoreController controller = loader.getController();
+    controller.getHighscore();
+
     stage = (Stage)((Node)e.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
