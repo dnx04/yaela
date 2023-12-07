@@ -21,7 +21,7 @@
             </Label>
          </children>
       </StackPane>
-      <TextField fx:id="searchBox" prefHeight="40.0" prefWidth="254.0" />
+      <TextField fx:id="searchBox" prefHeight="40.0" prefWidth="254.0" promptText="Search..." />
       <ChoiceBox fx:id="dictChoiceBox" layoutX="768.0" layoutY="14.0" prefWidth="150.0" />
       <Button fx:id="leftBtn" layoutX="275.0" layoutY="294.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" stylesheets="@../styles/favorites.css" />
       <Button fx:id="rightBtn" layoutX="878.0" layoutY="294.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" stylesheets="@../styles/favorites.css" />
