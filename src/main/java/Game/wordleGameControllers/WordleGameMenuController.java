@@ -32,7 +32,7 @@ public class WordleGameMenuController {
     stage.setScene(scene);
 
     tabPane = (TabPane) loader.getNamespace().get("tabPane");
-    int tabIndex = 2;
+    int tabIndex = 3;
     tabPane.getSelectionModel().select(tabIndex);
 
     stage.show();
